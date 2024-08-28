@@ -1,11 +1,10 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-  
-</head>
-<body>
-  <iframe id="player"></iframe>
-  <script>
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player"></div>
+
+    <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
 
@@ -50,6 +49,5 @@
         player.stopVideo();
       }
     </script>
-
-</body>
+  </body>
 </html>
