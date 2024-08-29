@@ -63,19 +63,6 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 100%;
 }
 
-@media screen and (max-height: 400px) {
-  #thumb {
-    position: absolute;
-    width: 105%;
-    left: 0px;
-    top: 0px;
-    z-index: -1;
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-  }
-  #prog {display:none}
-}
-
 @media screen and (max-width: 660px) {
   #thumb {
     width: 80%;
@@ -87,6 +74,21 @@ input[type="range"]::-moz-range-thumb {
   #b {
     font-size: 15vw;
   }
+}
+
+@media screen and (max-height: 400px) {
+  #thumb {
+    position: absolute;
+    width: 110% !important;
+    left: -5%;
+    top: -5%;
+    z-index: -1;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+  }
+  #prog {display:none}
+
+  * {scrollbar-width: none}
 }
 
 @media screen and (min-width: 700px) {
