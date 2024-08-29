@@ -6,10 +6,12 @@ html {
   --accent: black;
   --back: white;
   --text: black;
+  height: 98%;
 }
 
 body {
   background: var(--back);
+  height: 100%;
 }
 
 .thumbnail {
@@ -64,3 +66,7 @@ input[type="range"]::-moz-range-thumb {
     width: 1rem;
     border-radius: 100%;
 }
+
+@media screen and (max-width: 200px) {
+  
+} 
