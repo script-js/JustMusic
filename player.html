@@ -77,7 +77,7 @@
             break;
           case YT.PlayerState.PLAYING: b.innerHTML = "pause_circle"; loadMeta();
             break;
-          case YT.PlayerState.ENDED: b.innerHTML = "play_circle"; alert("end")
+          case YT.PlayerState.ENDED: b.innerHTML = "play_circle";clearInterval(progInt); if (playlist) {playlistItem()}
             break;
         }
       }
