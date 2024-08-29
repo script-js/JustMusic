@@ -33,7 +33,7 @@
         }
         vidId = playlist[currentVid]
         player.loadVideoById(vidId)
-        loadMeta()
+        player.playVideo()
       }
       
       var tag = document.createElement('script');
@@ -67,7 +67,7 @@
         switch (event.data) {
           case YT.PlayerState.PAUSED: b.innerHTML = "play_circle"
             break;
-          case YT.PlayerState.PLAYING: b.innerHTML = "pause_circle"
+          case YT.PlayerState.PLAYING: b.innerHTML = "pause_circle"; loadMeta();
             break;
           case YT.PlayerState.ENDED: b.innerHTML = "play_circle"; alert("end")
             break;
