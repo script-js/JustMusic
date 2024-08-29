@@ -114,3 +114,8 @@ input[type="range"]::-moz-range-thumb {
     display:none;
   }
 }
+
+#frame {
+  position: absolute;
+  display: none;
+}
