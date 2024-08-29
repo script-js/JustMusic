@@ -33,7 +33,7 @@
         } else {
           var currentVid = 0
         }
-        var playlist = JSON.parse(playlistString)
+        var playlist = playlistString.split(",")
         vidId = playlist[currentVid] 
         if (currentVid == 0) {
           sp.style = "visibility:hidden"
