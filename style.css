@@ -5,7 +5,6 @@
 .thumbnail {
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  width: 80%;
 }
 
 .controls {
@@ -13,6 +12,7 @@
   padding: 5px;
   font-size: 10vw;
   cursor: pointer;
+  transition: ease 100ms;
 }
 
 .controls:hover {
