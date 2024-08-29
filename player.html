@@ -55,7 +55,7 @@
             'playsinline': 1
           },
           events: {
-            'onReady': loadMeta,
+            'onReady': function() {player.playVideo()},
             'onStateChange': onPlayerStateChange
           }
         });
@@ -96,7 +96,6 @@ var progInt;
           progInt = setInterval(function () {
             prog.value = player.playerInfo.currentTime
           },1000)
-          player.playVideo();
       }
 
       async function getInfo(id) {
