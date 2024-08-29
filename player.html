@@ -20,13 +20,18 @@
       prog.value = 0
       var vidId = new URLSearchParams(window.location.search).get("v")
       var playlistString = new URLSearchParams(window.location.search).get("list")
+      var starter = new URLSearchParams(window.location.search).get("startAt")
       
       if (playlistString) {
         sn.style = "";
         sp.style = "";
-        var currentVid = 0
+        if (starter) {
+          var currentVid = starter
+        } else {
+          var currentVid = 0
+        }
         var playlist = JSON.parse(playlistString)
-        vidId = playlist[0] 
+        vidId = playlist[currentVid] 
         if (currentVid == 0) {
           sp.style = "visibility:hidden"
         } else {
