@@ -9,11 +9,12 @@
     <img id="thumb" class="thumbnail" width="80%">
     <h1 id="t">Loading...</h1>
     <p id="a"></p>
-    <input type="range" id="prog" min="0" value="0" onchange="player.seekTo(this.value,true)" style="width:75%"><br>
+    <input type="range" id="prog" min="0" onchange="player.seekTo(this.value,true)" style="width:75%"><br>
     <span onclick="playlistItem(true)" class="material-symbols-outlined controls" style="display:none" id="sp">skip_previous</span>
     <span onclick="pToggle()" id="b" class="material-symbols-outlined controls" style="font-size:15vw">play_circle</span>
     <span onclick="playlistItem()" id="sn" class="material-symbols-outlined controls" style="display:none">skip_next</span>
     <script>
+      prog.value = 0
       var vidId = new URLSearchParams(window.location.search).get("v")
       var playlistString = new URLSearchParams(window.location.search).get("list")
       
@@ -26,6 +27,7 @@
       }
 
       function playlistItem(back) {
+        prog.value = 0;
         thumb.src = "";
         t.innerHTML = "Loading..."
         a.innerHTML = ""
