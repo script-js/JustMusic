@@ -58,10 +58,11 @@
       } 
 
       async function onPlayerReady(event) {
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=NQbkGDoD7B0&part=snippet,contentDetails")).json();
-        console.log()
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=NQbkGDoD7B0&part=snippet,contentDetails")).json();\
         if (resp.status < 400) {
+          console.log()
           var video = resp.items[0]
+          console.log()
           var duration = video.contentDetails.duration.replace("PT","").split("M")
           duration[1] = duration[1].replace("S","")
           var durationSecs = (parseInt(duration[0]) * 60) + parseInt(duration[1])
