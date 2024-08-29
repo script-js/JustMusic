@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <iframe id="frame" style="display:none" frameborder="0"></iframe>
+    <script>
+      function maximize() {
+        frame.style.top = "0"
+        frame.style.left = "0"
+        frame.width = "101%"
+        frame.height = "101%"
+      }
+
+      function minimize() {
+        frame.style.top = ""
+        frame.style.left = ""
+        frame.style.bottom = "0"
+        frame.style.right = "0"
+        frame.width = "400px"
+        frame.height = "400px"
+      }
+
+      function loadList(list,start) {
+        frame.style.display = "block"
+        frame.src = "player?list=" + list + "&startAt=" + start
+        setTimeout(maximize,10)
+      }
+
+      function loadSong(id) {
+        frame.style.display = "block"
+        frame.src = "player?v=" + id
+        setTimeout(maximize,10)
+      }
+    </script>
+  </body>
+</html>
