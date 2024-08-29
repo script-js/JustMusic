@@ -33,7 +33,7 @@
         }
         vidId = playlist[currentVid]
         player.loadVideoById(vidId)
-        onPlayerReady()
+        loadMeta()
       }
       
       var tag = document.createElement('script');
@@ -52,7 +52,7 @@
             'playsinline': 1
           },
           events: {
-            'onReady': onPlayerReady,
+            'onReady': loadMeta,
             'onStateChange': onPlayerStateChange
           }
         });
@@ -83,22 +83,32 @@
           player.playVideo()
         }
       } 
+var progInt;
+      function loadMeta() {
+          t.innerText = player.playerInfo.videoData.title
+          a.innerText = player.playerInfo.videoData.author.replace(" - Topic","")
+          thumb.src = "https://img.youtube.com/vi/" + vidId + "/maxresdefault.jpg"
+          prog.max = player.playerInfo.duration
+          progInt = setInterval(function () {
+            prog.value = player.playerInfo.currentTime
+          },1000)
+          player.playVideo();
+      }
 
-      async function onPlayerReady() {
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + vidId + "&part=snippet,contentDetails")).json();
+      async function getInfo(id) {
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + id + "&part=snippet,contentDetails")).json();
+        var json = {}
         if (resp.items) {
           var video = resp.items[0]
           var duration = video.contentDetails.duration.replace("PT","").split("M")
           duration[1] = duration[1].replace("S","")
-          var durationSecs = (parseInt(duration[0]) * 60) + parseInt(duration[1])
-          prog.max = durationSecs
-          thumb.src = "https://img.youtube.com/vi/" + vidId + "/maxresdefault.jpg"
-          t.innerText = video.snippet.title
-          a.innerText = video.snippet.channelTitle.replace(" - Topic","")
-          player.playVideo();
-          var int = setInterval(function () {
-            prog.value = player.playerInfo.currentTime
-          },1000)
+          json.duration = `${duration[0]}:${duration[1]}`
+          json.cover = video.snippet.thumbnails.maxres.url
+          json.title = video.snippet.title
+          json.artist = video.snippet.channelTitle.replace(" - Topic","")
+          return json;
+        } else {
+          alert("Error getting metadata for video id " + id)
         }
       }
     </script>
