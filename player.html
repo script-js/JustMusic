@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body style="text-align:center">
     <div id="player"></div>
     <img id="thumb" class="thumbnail">
     <input type="range" id="prog" min="0" value="0" onchange="player.seekTo(this.value,true)">
@@ -39,6 +39,7 @@
       //    the player should play for six seconds and then stop.
       var done = false;
       function onPlayerStateChange(event) {
+        console.log(event.data)
         if (event.data == YT.PlayerState.PLAYING && !done) {
           done = true;
         }
