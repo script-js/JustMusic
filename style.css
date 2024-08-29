@@ -76,6 +76,9 @@ input[type="range"]::-moz-range-thumb {
   #control {
     display: block;
   }
+  #b {
+    font-size: 15vw
+  }
 }
 
 @media screen and (min-width: 660px) {
@@ -83,7 +86,17 @@ input[type="range"]::-moz-range-thumb {
     height: 80%;
   }
 
-  #control {
-    display: inline-block;
+  body {
+    font-size: 2vw;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #b {
+    font-size: 10vw
+  }
+
+  .controls {
+    font-size: 7vw;
   }
 }
