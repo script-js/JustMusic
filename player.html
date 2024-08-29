@@ -10,9 +10,28 @@
     <h1 id="t">Loading...</h1>
     <p id="a"></p>
     <input type="range" id="prog" min="0" value="0" onchange="player.seekTo(this.value,true)" style="width:75%"><br>
+    <span onclick="playlistItem(true)" class="material-symbols-outlined controls">skip_previous</span>
     <span onclick="pToggle()" id="b" class="material-symbols-outlined controls" style="font-size:15vw">play_circle</span>
+    <span onclick="playlistItem()" class="material-symbols-outlined controls">skip_next</span>
     <script>
       var vidId = new URLSearchParams(window.location.search).get("v")
+      var playlistString = new URLSearchParams(window.location.search).get("list")
+      
+      if (playlistString) {
+        var currentVid = 0
+        var playlist = JSON.parse(atob(playlistString))
+        vidId = playlist[0] 
+      }
+
+      function playlistItem(back) {
+        if (back) {
+          currentVid -= 1
+        } else {
+          currentVid += 1
+        }
+        vidId = playlist[currentVid]
+        onYouTubeIframeAPIReady()
+      }
       
       var tag = document.createElement('script');
 
