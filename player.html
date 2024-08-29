@@ -6,8 +6,8 @@
   </head>
   <body style="text-align:center">
     <div id="player"></div>
-    <img id="thumb" class="thumbnail">
-    <input type="range" id="prog" min="0" value="0" onchange="player.seekTo(this.value,true)">
+    <img id="thumb" class="thumbnail"><br>
+    <input type="range" id="prog" min="0" value="0" onchange="player.seekTo(this.value,true)"><br>
     <button onclick="pToggle(this)" class="material-symbols-outlined">pause_circle</button>
     <script>
       var vidId = new URLSearchParams(window.location.search).get("v")
@@ -39,9 +39,13 @@
       //    the player should play for six seconds and then stop.
       var done = false;
       function onPlayerStateChange(event) {
-        console.log(event.data)
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          done = true;
+        switch (event.data) {
+          case YT.PlayerState.PAUSED: b.innerHTML = "play_circle"
+            break;
+          case YT.PlayerState.PLAYING: b.innerHTML = "pause_circle"
+            break;
+          case YT.PlayerState.ENDED: b.innerHTML = "play_circle"; alert("end")
+            break;
         }
       }
       function stopVideo() {
@@ -70,10 +74,6 @@
           event.target.playVideo();
           var int = setInterval(function () {
             prog.value = player.playerInfo.currentTime
-            if (prog.value >= durationSecs) {
-              clearInterval(int)
-              alert("end")
-            }
           },1000)
         }
       }
