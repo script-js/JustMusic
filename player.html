@@ -27,6 +27,16 @@
         var currentVid = 0
         var playlist = JSON.parse(playlistString)
         vidId = playlist[0] 
+        if (currentVid == 0) {
+          sp.style = "visibility:hidden"
+        } else {
+          sp.style = ""
+        }
+        if (currentVid == (playlist.length - 1)) {
+          sn.style = "visibility:hidden"
+        } else {
+          sn.style = ""
+        }
       }
 
       function playlistItem(back) {
@@ -39,17 +49,17 @@
         } else {
           currentVid += 1
         }
-        vidId = playlist[currentVid]
         if (currentVid == 0) {
           sp.style = "visibility:hidden"
         } else {
           sp.style = ""
         }
-        if (currentVid == playlist.length) {
+        if (currentVid == (playlist.length - 1)) {
           sn.style = "visibility:hidden"
         } else {
           sn.style = ""
         }
+        vidId = playlist[currentVid]
         player.loadVideoById(vidId)
         player.playVideo()
       }
