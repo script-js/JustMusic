@@ -6,6 +6,7 @@
   </head>
   <body style="text-align:center">
     <div id="player"></div>
+    <div id="left">
     <div style="height:2%"></div>
     <img id="thumb" class="thumbnail" width="80%">
     <h1 id="t">Loading...</h1>
@@ -14,6 +15,8 @@
     <span onclick="playlistItem(true)" class="material-symbols-outlined controls" style="display:none" id="sp">skip_previous</span>
     <span onclick="pToggle()" id="b" class="material-symbols-outlined controls" style="font-size:15vw">play_circle</span>
     <span onclick="playlistItem()" id="sn" class="material-symbols-outlined controls" style="display:none">skip_next</span>
+    </div>
+    <div id="right"></div>
     <script>
       prog.value = 0
       var vidId = new URLSearchParams(window.location.search).get("v")
