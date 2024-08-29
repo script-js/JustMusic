@@ -83,7 +83,7 @@
       } 
 
       async function onPlayerReady() {
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=NQbkGDoD7B0&part=snippet,contentDetails")).json();
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + vidId + "&part=snippet,contentDetails")).json();
         if (resp.items) {
           var video = resp.items[0]
           var duration = video.contentDetails.duration.replace("PT","").split("M")
