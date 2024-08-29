@@ -118,6 +118,7 @@ input[type="range"]::-moz-range-thumb {
 #frame {
   position: absolute;
   display: none;
+  transition: ease 500ms;
 }
 
 #toggle {
