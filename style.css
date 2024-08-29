@@ -72,10 +72,18 @@ input[type="range"]::-moz-range-thumb {
   #thumb {
     width: 80%;
   }
+
+  #control {
+    display: block;
+  }
 }
 
 @media screen and (min-width: 660px) {
   #thumb {
     height: 80%;
+  }
+
+  #control {
+    display: inline-block;
   }
 }
