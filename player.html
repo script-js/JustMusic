@@ -63,6 +63,7 @@
       //    the player should play for six seconds and then stop.
       var done = false;
       function onPlayerStateChange(event) {
+        console.log(event.data)
         switch (event.data) {
           case YT.PlayerState.PAUSED: b.innerHTML = "play_circle"
             break;
