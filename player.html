@@ -26,6 +26,9 @@
       }
 
       function playlistItem(back) {
+        thumb.src = "";
+        t.innerHTML = "Loading..."
+        a.innerHTML = ""
         if (back) {
           currentVid -= 1
         } else {
