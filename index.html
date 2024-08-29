@@ -8,10 +8,14 @@
     <iframe id="frame" style="display:none" frameborder="0"><div class="material-symbols-outlined" id="toggle" onclick="toggleMM()">keyboard_arrow_down</div></iframe>
     <script>
       function maximize() {
-        frame.style.top = "0"
-        frame.style.left = "0"
         frame.width = "101%"
         frame.height = "101%"
+        setTimeout(function() {
+          frame.style.top = "0"
+          frame.style.left = "0"
+          frame.style.top = ""
+          frame.style.left = ""
+        },500)
       }
 
       function minimize() {
