@@ -30,7 +30,7 @@
           currentVid += 1
         }
         vidId = playlist[currentVid]
-        onYouTubeIframeAPIReady()
+        player.loadVideoById(vidId)
       }
       
       var tag = document.createElement('script');
