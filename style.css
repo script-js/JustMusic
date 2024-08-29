@@ -99,4 +99,8 @@ input[type="range"]::-moz-range-thumb {
   .controls {
     font-size: 7vw;
   }
+
+  #ws {
+    display:none;
+  }
 }
