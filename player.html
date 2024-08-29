@@ -68,7 +68,7 @@
           thumb.src = "https://img.youtube.com/vi/" + vidId + "/maxresdefault.jpg"
           event.target.playVideo();
           var int = setInterval(function () {
-            prog.value = player.getCurrentTime()
+            prog.value = player.playerInfo.currentTime
             if (prog.value <= durationSecs) {
               clearInterval(int)
               alert("end")
