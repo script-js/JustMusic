@@ -61,9 +61,9 @@
         }
       } 
 
-      function onPlayerReady(event) {
+      async function onPlayerReady(event) {
         console.log(event.target.playerInfo)
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=NQbkGDoD7B0&part=snippet,contentDetails")).json()
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=NQbkGDoD7B0&part=snippet,contentDetails")).json();
         if (resp.code < 400) {
           var video = resp.items[0]
           var duration = video.contentDetails.duration.replace("PT","").split("M")
