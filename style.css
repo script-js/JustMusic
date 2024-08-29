@@ -22,7 +22,7 @@
 
 input[type="range"]::-moz-range-track {
   background: #053a5f;
-  height: 0.5rem;
+  height: 0.1rem;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
