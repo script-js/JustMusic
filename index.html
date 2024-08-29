@@ -44,6 +44,12 @@
         frame.src = "player?v=" + id
         setTimeout(maximize,10)
       }
+
+      var toggle = document.createElement("div")
+      toggle.id = "toggle"
+      toggle.classList = "material-symbols-outlined"
+      toggle.onclick = toggleMM
+      frame.onload = function() {this.contentDocument.documentElement.appendChild(toggle)}
     </script>
   </body>
 </html>
