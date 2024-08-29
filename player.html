@@ -69,7 +69,7 @@
           event.target.playVideo();
           var int = setInterval(function () {
             prog.value = player.playerInfo.currentTime
-            if (prog.value <= durationSecs) {
+            if (prog.value >= durationSecs) {
               clearInterval(int)
               alert("end")
             }
