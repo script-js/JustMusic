@@ -12,6 +12,7 @@
   border-radius: 100%;
   padding: 5px;
   font-size: 2vw;
+  cursor: pointer;
 }
 
 .controls:hover {
