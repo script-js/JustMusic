@@ -40,6 +40,16 @@
           currentVid += 1
         }
         vidId = playlist[currentVid]
+        if (currentVid == 0) {
+          sp.style = "visibility:hidden"
+        } else {
+          sp.style = ""
+        }
+        if (currentVid == playlist.length) {
+          sn.style = "visibility:hidden"
+        } else {
+          sn.style = ""
+        }
         player.loadVideoById(vidId)
         player.playVideo()
       }
