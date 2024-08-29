@@ -119,3 +119,11 @@ input[type="range"]::-moz-range-thumb {
   position: absolute;
   display: none;
 }
+
+#toggle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,0.5);
+  padding: 10px;
+}
