@@ -21,7 +21,10 @@
       var vidId = new URLSearchParams(window.location.search).get("v")
       var playlistString = new URLSearchParams(window.location.search).get("list")
       var starter = new URLSearchParams(window.location.search).get("startAt")
-      
+      var theme = new URLSearchParams(window.location.search).get("theme")
+      if (theme) {
+        document.documentElement.style = theme
+      }
       if (playlistString) {
         sn.style = "";
         sp.style = "";
