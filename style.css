@@ -103,7 +103,7 @@ input[type="range"]::-moz-range-thumb {
     max-height: 600px;
   }
 
-  body {
+  .body {
     font-size: 2vw;
     display: flex;
     align-items: center;
