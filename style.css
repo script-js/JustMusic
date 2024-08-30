@@ -145,7 +145,7 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 730px) {
   .minimized {
     height: 40px !important;
     width: 100% !important;
