@@ -59,6 +59,24 @@
       toggle.onclick = toggleMM
       toggle.innerHTML = "keyboard_arrow_down"
       frame.onload = function() {this.contentDocument.documentElement.appendChild(toggle)}
+
+      async function getList(id) {
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&playlistId=" + id + "&part=snippet")).json();
+        if (resp.items) {
+          resp.items.forEach(function(video) {
+            var json = {}
+            var duration = video.contentDetails.duration.replace("PT","").split("M")
+            duration[1] = duration[1].replace("S","")
+            json.duration = `${duration[0]}:${duration[1]}`
+            json.cover = video.snippet.thumbnails.maxres.url
+            json.title = video.snippet.title
+            json.artist = video.snippet.channelTitle.replace(" - Topic","")
+            console.log(json)
+          })
+        } else {
+          alert("Error getting playlist")
+        }
+      }
     </script>
   </body>
 </html>
