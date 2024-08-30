@@ -139,6 +139,10 @@ input[type="range"]::-moz-range-thumb {
     align-items: center
   }
 
+  body {
+    font-size: 15vh;
+  }
+
   .ta {
     display: inline-block;
     text-align: start !important;
@@ -147,4 +151,6 @@ input[type="range"]::-moz-range-thumb {
   #toggle {
     left: 45% !important;
   }
+
+  #ws {display:none}
 }
