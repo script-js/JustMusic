@@ -61,7 +61,7 @@
       frame.onload = function() {this.contentDocument.documentElement.appendChild(toggle)}
 
       async function getList(id) {
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&playlistId=" + id + "&part=snippet")).json();
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&playlistId=" + id + "&part=snippet,contentDetails")).json();
         if (resp.items) {
           resp.items.forEach(function(video) {
             var json = {}
