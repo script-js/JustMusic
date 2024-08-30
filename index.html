@@ -60,18 +60,36 @@
       toggle.innerHTML = "keyboard_arrow_down"
       frame.onload = function() {this.contentDocument.documentElement.appendChild(toggle)}
 
-      async function getList(id) {
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&playlistId=" + id + "&part=snippet,contentDetails")).json();
+      async function getInfo(id,handoff) {
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + id + "&part=snippet,contentDetails")).json();
+        var json = {}
         if (resp.items) {
-          resp.items.forEach(function(video) {
-            var json = {}
-            var duration = video.contentDetails.duration.replace("PT","").split("M")
-            duration[1] = duration[1].replace("S","")
-            json.duration = `${duration[0]}:${duration[1]}`
-            json.cover = video.snippet.thumbnails.maxres.url
-            json.title = video.snippet.title
-            json.artist = video.snippet.channelTitle.replace(" - Topic","")
-            console.log(json)
+          var video = resp.items[0]
+          var duration = video.contentDetails.duration.replace("PT","").split("M")
+          duration[1] = duration[1].replace("S","")
+          json.duration = `${duration[0]}:${duration[1]}`
+          json.cover = video.snippet.thumbnails.maxres.url
+          json.title = video.snippet.title
+          json.artist = video.snippet.channelTitle.replace(" - Topic","")
+          handoff(json)
+        } else {
+          alert("Error getting metadata for video id " + id)
+        }
+      }
+      
+      async function getList(id,elem) {
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&playlistId=" + id + "&part=contentDetails")).json();
+        if (resp.items) {
+          var ids = []
+          resp.items.forEach(function(k,index) {
+            ids.push(k.contentDetails.videoId)
+            getInfo(k.contentDetails.videoId,function(data) {
+              var item = document.createElement("div")
+              item.innerHTML = `<img class="thumbnail" src="${data.cover}" width="100"><strong>${data.title}</strong><br>${data.artist}<div style="float:right;display:inline-block">${data.duration}</div>`
+              item.onclick = function() {
+                loadList(ids,index)
+              }
+            })
           })
         } else {
           alert("Error getting playlist")
