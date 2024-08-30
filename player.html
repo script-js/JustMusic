@@ -9,12 +9,16 @@
     <div style="height:2%" id="ws"></div>
     <img id="thumb" class="thumbnail">
     <div id="control">
+    <div class="ta">
     <h1 id="t">Loading...</h1>
     <p id="a"></p>
+    </div>
     <input type="range" id="prog" min="0" onchange="player.seekTo(this.value,true)" style="width:75%"><br>
+    <div class="btns">
     <span onclick="playlistItem(true)" class="material-symbols-outlined controls" style="display:none" id="sp">skip_previous</span>
     <span onclick="pToggle()" id="b" class="material-symbols-outlined controls">play_circle</span>
     <span onclick="playlistItem()" id="sn" class="material-symbols-outlined controls" style="display:none">skip_next</span>
+    </div>
     </div>
     <script>
       prog.value = 0
