@@ -74,6 +74,11 @@ input[type="range"]::-moz-range-thumb {
   #b {
     font-size: 15vw;
   }
+
+  .minimized {
+    height: 40px !important;
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-height: 400px) {
@@ -112,11 +117,6 @@ input[type="range"]::-moz-range-thumb {
 
   #ws {
     display:none;
-  }
-  
-  .minimized {
-    height: 40px !important;
-    width: 100% !important;
   }
 }
 
