@@ -11,6 +11,7 @@
       function maximize() {
         frame.width = "101%"
         frame.height = "101%"
+        frame.classList = ""
         setTimeout(function() {
           frame.style.top = "0"
           frame.style.left = "0"
@@ -22,6 +23,7 @@
       function minimize() {
         frame.style.top = ""
         frame.style.left = ""
+        frame.classList = "minimized"
         frame.style.bottom = "0"
         frame.style.right = "0"
         frame.width = "20%"
