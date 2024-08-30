@@ -123,7 +123,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 #frame {
-  position: absolute;
+  position: sticky;
   display: none;
   transition: ease 500ms;
   aspect-ratio: 4 / 3;
