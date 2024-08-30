@@ -25,20 +25,19 @@
       prog.value = 0
       var vidId = new URLSearchParams(window.location.search).get("v")
       var playlistString = new URLSearchParams(window.location.search).get("list")
-      var starter = new URLSearchParams(window.location.search).get("startAt")
       var theme = new URLSearchParams(window.location.search).get("theme")
       if (theme) {
         document.documentElement.style = theme
       }
       if (playlistString) {
+        var playlist = playlistString.split(",")
         sn.style = "";
         sp.style = "";
-        if (starter) {
-          var currentVid = starter
+        if (vidId) {
+          var currentVid = playlist.find((element) => element == vidId)
         } else {
           var currentVid = 0
         }
-        var playlist = playlistString.split(",")
         vidId = playlist[currentVid] 
         if (currentVid == 0) {
           sp.style = "visibility:hidden"
