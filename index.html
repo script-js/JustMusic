@@ -78,7 +78,7 @@
       }
       
       async function getList(id,elem) {
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&playlistId=" + id + "&part=contentDetails")).json();
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails")).json();
         if (resp.items) {
           var ids = []
           resp.items.forEach(function(k,index) {
