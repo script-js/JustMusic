@@ -132,7 +132,7 @@ input[type="range"]::-moz-range-thumb {
   padding: 10px;
 }
 
-@media screen and (max-height: 100px) {
+@media screen and (max-height: 40px) {
   #toggle {
     width:101%;
     text-align:center;
