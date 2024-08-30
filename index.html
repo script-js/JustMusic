@@ -18,10 +18,12 @@
           frame.style.left = "0"
           frame.style.bottom = ""
           frame.style.right = ""
+          toggle.innerHTML = "keyboard_arrow_down"
         },500)
       }
 
       function minimize() {
+        toggle.innerHTML = "keyboard_arrow_up"
         frame.style.top = ""
         frame.style.left = ""
         frame.classList = "minimized"
@@ -34,10 +36,8 @@
       function toggleMM() {
         if (toggle.innerHTML == "keyboard_arrow_down") {
           minimize()
-          toggle.innerHTML = "keyboard_arrow_up"
         } else {
           maximize()
-          toggle.innerHTML = "keyboard_arrow_down"
         }
       }
 
@@ -85,7 +85,8 @@
             ids.push(k.contentDetails.videoId)
             getInfo(k.contentDetails.videoId,function(data) {
               var item = document.createElement("div")
-              item.innerHTML = `<img class="thumbnail" src="${data.cover}" width="100"><strong>${data.title}</strong><br>${data.artist}<div style="float:right;display:inline-block">${data.duration}</div>`
+              item.style = "display:flex;align-items:center;"
+              item.innerHTML = `<img class="thumbnail" src="${data.cover}" height="10%"><div><strong>${data.title}</strong><br>${data.artist}</div><div style="margin-left:auto">${data.duration}</div>`
               item.onclick = function() {
                 loadList(ids,index)
               }
