@@ -91,7 +91,7 @@ input[type="range"]::-moz-range-thumb {
   * {scrollbar-width: none}
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 730px) {
   #thumb {
     height: 70%;
   }
@@ -112,6 +112,11 @@ input[type="range"]::-moz-range-thumb {
 
   #ws {
     display:none;
+  }
+  
+  .minimized {
+    height: 40px !important;
+    width: 100% !important;
   }
 }
 
@@ -142,12 +147,5 @@ input[type="range"]::-moz-range-thumb {
     position: absolute;
     top: 0;
     z-index: 0;
-  }
-}
-
-@media screen and (max-width: 730px) {
-  .minimized {
-    height: 40px !important;
-    width: 100% !important;
   }
 }
