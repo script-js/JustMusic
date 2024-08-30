@@ -134,18 +134,13 @@ input[type="range"]::-moz-range-thumb {
 
 @media screen and (max-height: 100px) {
   .btns {
-    float: right;
-    display: inline-flex;
-    align-items: center
+    display: flex;
+    align-items: center;
+    width: 30%;
   }
-
-  body {
-    font-size: 15vh;
-  }
-
+  
   .ta {
-    display: inline-block;
-    text-align: start !important;
+    display: none;
   }
 
   #toggle {
