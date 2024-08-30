@@ -134,9 +134,7 @@ input[type="range"]::-moz-range-thumb {
 
 @media screen and (max-height: 100px) {
   .btns {
-    display: flex;
-    align-items: center;
-    width: 30%;
+    display: none;
   }
   
   .ta {
@@ -144,7 +142,7 @@ input[type="range"]::-moz-range-thumb {
   }
 
   #toggle {
-    left: 45% !important;
+    width:101%;
   }
 
   #ws {display:none}
