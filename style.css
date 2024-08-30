@@ -133,18 +133,8 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @media screen and (max-height: 100px) {
-  .btns {
-    display: none;
-  }
-  
-  .ta {
-    display: none;
-  }
-
   #toggle {
     width:101%;
     text-align:center;
   }
-
-  #ws {display:none}
 }
