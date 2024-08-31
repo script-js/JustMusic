@@ -60,19 +60,20 @@
       toggle.innerHTML = "keyboard_arrow_down"
       frame.onload = function() {this.contentDocument.documentElement.appendChild(toggle)}
 
-      async function getInfo(id,handoff) {
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + id + "&part=snippet,contentDetails")).json();
+      async function getInfo(ids,handoff) {
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/videos?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + ids + "&part=snippet,contentDetails")).json();
         var json = {}
         if (resp.items) {
-          var video = resp.items[0]
-          var duration = video.contentDetails.duration.replace("PT","").split("M")
-          duration[1] = duration[1].replace("S","")
-          if (duration[1].length == 1) {duration[1] = "0" + duration[1]}
-          json.duration = `${duration[0]}:${duration[1]}`
-          json.cover = video.snippet.thumbnails.maxres.url
-          json.title = video.snippet.title
-          json.artist = video.snippet.channelTitle.replace(" - Topic","")
-          handoff(json)
+          handoff(resp.items.map(function(video) {
+            var duration = video.contentDetails.duration.replace("PT","").split("M")
+            duration[1] = duration[1].replace("S","")
+            if (duration[1].length == 1) {duration[1] = "0" + duration[1]}
+            json.duration = `${duration[0]}:${duration[1]}`
+            json.cover = video.snippet.thumbnails.maxres.url
+            json.title = video.snippet.title
+            json.artist = video.snippet.channelTitle.replace(" - Topic","")
+            return json
+          }))
         } else {
           alert("Error getting metadata for video id " + id)
         }
@@ -81,9 +82,15 @@
       async function getList(id,elem) {
         var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails")).json();
         if (resp.items) {
-          var ids = resp.items.map((x) => x.contentDetails.videoId);
-          ids.forEach(async function(k) {
-            await getInfo(k,function(data) {
+          showList(resp.items.map((x) => x.contentDetails.videoId),elem);
+        } else {
+          alert("Error getting playlist")
+        }
+      }
+
+      function showList(ids,elem) {
+        ids.forEach(function(k) {
+            getInfo(k,function(data) {
               var item = document.createElement("div")
               item.classList = "song"
               item.innerHTML = `<img class="thumbnail" src="${data.cover}" height="70"><div><strong>${data.title}</strong><br>${data.artist}</div><div style="margin-left:auto">${data.duration}</div>`
@@ -93,9 +100,6 @@
               elem.appendChild(item)
             })
           })
-        } else {
-          alert("Error getting playlist")
-        }
       }
     </script>
   </body>
