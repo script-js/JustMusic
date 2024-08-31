@@ -75,7 +75,6 @@
             json.id = video.id
             json.title = video.snippet.title
             json.artist = video.snippet.channelTitle.replace(" - Topic","")
-            console.log(json)
             return json
           }))
         } else {
@@ -103,7 +102,6 @@
       function showList(ids,elem) {
         elem.innerHTML = ""
             getInfo(ids,function(k) {
-              console.log(k)
               k.forEach(function(data) {
                 var item = document.createElement("div")
                 item.classList = "song"
