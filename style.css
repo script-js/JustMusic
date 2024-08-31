@@ -151,3 +151,18 @@ input[type="range"]::-moz-range-thumb {
     z-index: 0;
   }
 }
+
+.song {
+  display:flex;
+  align-items:center;
+  font-size:20px;
+  gap: 10px;
+}
+
+.song:hover {
+  opacity: 0.7;
+}
+
+.song .thumbnail {
+  cursor: pointer;
+}
