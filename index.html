@@ -84,11 +84,12 @@
       
       async function getList(url,elem) {
         if (url.includes("playlist")) {
-          var search = new URLSearchParams(url.replace(".youtube.com/playlist","").replace("https://music","").replace("https://www","").replace("https://",""))
+          var id = new URLSearchParams(url.replace(".youtube.com/playlist","").replace("https://music","").replace("https://www","").replace("https://","")).get("list")
         } else if (url.includes("watch")) {
-          var search = new URLSearchParams(url.replace(".youtube.com/watch").replace("https://music","").replace("https://www","").replace("https://",""))
+          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("https://music","").replace("https://www","").replace("https://","")).get("list")
         } else {
           alert("Invalid URL")
+          return;
         }
         var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails")).json();
         if (resp.items) {
