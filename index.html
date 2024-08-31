@@ -71,6 +71,7 @@
             if (duration[1].length == 1) {duration[1] = "0" + duration[1]}
             json.duration = `${duration[0]}:${duration[1]}`
             json.cover = video.snippet.thumbnails.maxres.url
+            json.id = video.id
             json.title = video.snippet.title
             json.artist = video.snippet.channelTitle.replace(" - Topic","")
             console.log(json)
@@ -99,7 +100,7 @@
                 item.classList = "song"
                 item.innerHTML = `<img class="thumbnail" src="${data.cover}" height="70"><div><strong>${data.title}</strong><br>${data.artist}</div><div style="margin-left:auto">${data.duration}</div>`
                 item.onclick = function() {
-                  loadList(ids,k)
+                  loadList(ids,)
                 }
                 elem.appendChild(item)
               })
