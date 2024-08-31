@@ -67,6 +67,7 @@
           var video = resp.items[0]
           var duration = video.contentDetails.duration.replace("PT","").split("M")
           duration[1] = duration[1].replace("S","")
+          if (duration[1].length == 1) {duration[1] = "0" + duration[1]}
           json.duration = `${duration[0]}:${duration[1]}`
           json.cover = video.snippet.thumbnails.maxres.url
           json.title = video.snippet.title
