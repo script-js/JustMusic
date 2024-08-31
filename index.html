@@ -100,7 +100,7 @@
                 item.classList = "song"
                 item.innerHTML = `<img class="thumbnail" src="${data.cover}" height="70"><div><strong>${data.title}</strong><br>${data.artist}</div><div style="margin-left:auto">${data.duration}</div>`
                 item.onclick = function() {
-                  loadList(ids,)
+                  loadList(ids,data.id)
                 }
                 elem.appendChild(item)
               })
