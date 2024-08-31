@@ -89,17 +89,17 @@
       }
 
       function showList(ids,elem) {
-        ids.forEach(function(k) {
-            getInfo(k,function(data) {
-              var item = document.createElement("div")
-              item.classList = "song"
-              item.innerHTML = `<img class="thumbnail" src="${data.cover}" height="70"><div><strong>${data.title}</strong><br>${data.artist}</div><div style="margin-left:auto">${data.duration}</div>`
-              item.onclick = function() {
-                loadList(ids,k)
-              }
-              elem.appendChild(item)
+            getInfo(ids,function(k) {
+              k.forEach(function(data) {
+                var item = document.createElement("div")
+                item.classList = "song"
+                item.innerHTML = `<img class="thumbnail" src="${data.cover}" height="70"><div><strong>${data.title}</strong><br>${data.artist}</div><div style="margin-left:auto">${data.duration}</div>`
+                item.onclick = function() {
+                  loadList(ids,k)
+                }
+                elem.appendChild(item)
+              })
             })
-          })
       }
     </script>
   </body>
