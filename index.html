@@ -72,6 +72,7 @@
             json.cover = video.snippet.thumbnails.maxres.url
             json.title = video.snippet.title
             json.artist = video.snippet.channelTitle.replace(" - Topic","")
+            console.log(json)
             return json
           }))
         } else {
