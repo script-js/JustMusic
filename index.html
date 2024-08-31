@@ -82,7 +82,14 @@
         }
       }
       
-      async function getList(id,elem) {
+      async function getList(url,elem) {
+        if (url.includes("playlist")) {
+          var search = new URLSearchParams(url.replace(".youtube.com/playlist","").replace("https://music","").replace("https://www","").replace("https://",""))
+        } else if (url.includes("watch")) {
+          var search = new URLSearchParams(url.replace(".youtube.com/watch").replace("https://music","").replace("https://www","").replace("https://",""))
+        } else {
+          alert("Invalid URL")
+        }
         var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails")).json();
         if (resp.items) {
           showList(resp.items.map((x) => x.contentDetails.videoId),elem);
