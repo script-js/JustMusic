@@ -111,7 +111,6 @@
             break;
           case YT.PlayerState.ENDED: b.innerHTML = "play_circle";clearInterval(progInt); if (playlist) {playlistItem()}
             break;
-          case YT.PlayerState.UNSTARTED: if (!player.videoTitle) {t.innerHTML = "Couldn't Play"}
         }
       }
       function stopVideo() {
