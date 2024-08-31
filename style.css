@@ -157,12 +157,9 @@ input[type="range"]::-moz-range-thumb {
   align-items:center;
   font-size:20px;
   gap: 10px;
+  cursor: pointer;
 }
 
 .song:hover {
   opacity: 0.7;
-}
-
-.song .thumbnail {
-  cursor: pointer;
 }
