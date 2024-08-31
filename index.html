@@ -83,7 +83,7 @@
         if (resp.items) {
           var ids = []
           resp.items.forEach(function(k,index) {
-            ids.push(k.contentDetails.videoId)
+            ids[index] = k.contentDetails.videoId
             getInfo(k.contentDetails.videoId,function(data) {
               var item = document.createElement("div")
               item.style = "display:flex;align-items:center;font-size:20px;gap: 10px;"
