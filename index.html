@@ -82,8 +82,8 @@
         var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails")).json();
         if (resp.items) {
           var ids = resp.items.map((x) => x.contentDetails.videoId);
-          ids.forEach(function(k) {
-            getInfo(k,function(data) {
+          ids.forEach(async function(k) {
+            await getInfo(k,function(data) {
               var item = document.createElement("div")
               item.style = "display:flex;align-items:center;font-size:20px;gap: 10px;"
               item.innerHTML = `<img class="thumbnail" src="${data.cover}" height="70"><div><strong>${data.title}</strong><br>${data.artist}</div><div style="margin-left:auto">${data.duration}</div>`
