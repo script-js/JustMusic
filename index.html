@@ -8,19 +8,19 @@
   </head>
   <body>
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
-    <nav><div><a class="ct" id="home" class="material-symbols-outlined" title="Recently Played">music_note</a><a class="ct" id="saved" class="material-symbols-outlined" title="Recently Played">playlist_play</a><a class="ct" id="settings" class="material-symbols-outlined" title="Settings">settings</a></div></nav>
+    <nav><div><a id="home" class="ct material-symbols-outlined" title="Recently Played">music_note</a><a id="saved" class="ct material-symbols-outlined" title="Recently Played">playlist_play</a><a id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
     <div class="container" id="settingsC"></div>
     <div class="container" id="homeC"></div>
     <div class="container" id="savedC"></div>
     <script>
       var currentTab = "home";
       function tabChange(tab) {
-        tab.classList = "active";
+        tab.classList = "material-symbols-outlined ct active";
         var tabid = tab.id
         document.getElementById(tabid + "C").style.display = "block";
         if (currentTab != tabid) {
           document.getElementById(currentTab + "C").style.display = "none";
-          document.getElementById(currentTab).classList = "";
+          document.getElementById(currentTab).classList = "material-symbols-outlined ct";
         }
         currentTab = tabid
       }
