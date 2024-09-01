@@ -128,7 +128,7 @@
       }
 
       async function search(query) {
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/search?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&part=snippet&q=" + query)).json();
+        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/search?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&videoEmbeddable=true&maxResults=50&part=snippet&q=" + query)).json();
         console.log(resp.items.filter((k) => k.snippet.channelTitle.includes(" - Topic")))
       }
     </script>
