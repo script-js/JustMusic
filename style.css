@@ -172,17 +172,17 @@ nav {
   height: 100%;
 }
 
-nav a {
+.ct {
   display: block !important;
   opacity: 0.8;
   cursor: pointer;
   font-size: 7vw !important;
 }
 
-nav a:hover {
+.ct:hover {
   opacity: 1;
 }
 
-nav a .active {
+.ct .active {
   opacity: 1;
 }
