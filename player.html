@@ -134,6 +134,10 @@ var progInt;
             prog.value = player.playerInfo.currentTime
           },1000)
       }
+
+      window.onblur = function() {
+        player.playVideo()
+      }
     </script>
   </body>
 </html>
