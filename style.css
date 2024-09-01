@@ -81,7 +81,7 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .ct {
-    font-size: 70px;
+    font-size: 10vw !important;
   }
 }
 
@@ -101,6 +101,10 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @media screen and (min-width: 730px) {
+  .ct {
+    font-size: 70px !important;
+  }
+  
   #thumb {
     width: 47%;
     max-width: 600px;
@@ -180,7 +184,6 @@ nav {
   display: block !important;
   opacity: 0.6;
   cursor: pointer;
-  font-size: 10vw !important;
 }
 
 .ct:hover {
