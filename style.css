@@ -194,3 +194,7 @@ nav {
 .ct.active {
   opacity: 1;
 }
+
+.container {
+  display:none
+}
