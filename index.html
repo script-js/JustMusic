@@ -8,9 +8,12 @@
   </head>
   <body>
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
-    <nav><a id="library" class="material-symbols-outlined" title="Recently Played">queue_music</a></nav>
+    <nav><a id="home" class="material-symbols-outlined" title="Recently Played">music_note</a><a id="saved" class="material-symbols-outlined" title="Recently Played">playlist_play</a><a id="settings" class="material-symbols-outlined" title="Settings">settings</a></nav>
+    <div class="container" id="settingsC"></div>
+    <div class="container" id="homeC"></div>
+    <div class="container" id="savedC"></div>
     <script>
-      var currentTab = "library";
+      var currentTab = "home";
       function tabChange(tab) {
         tab.classList = "active";
         var tabid = tab.id
@@ -94,16 +97,25 @@
           alert("Error getting metadata for video id " + id)
         }
       }
-      
-      async function getList(url,elem) {
+
+      function fromYT(url) {
         if (url.includes("playlist")) {
-          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://","")).get("list")
+          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://","")).
         } else if (url.includes("watch")) {
-          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://","")).get("list")
+          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://",""))
         } else {
           alert("Invalid URL")
           return;
         }
+        if (id.get("list")) {
+          tabChange(savedC)
+          getList(id.get("list"),savedC)
+        } else if (id.get("v")) {
+          loadSong(id.get("v"))
+        }
+      }
+      
+      async function getList(id,elem) {
         var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails")).json();
         if (resp.items) {
           showList(resp.items.map((x) => x.contentDetails.videoId),elem);
@@ -125,11 +137,6 @@
                 elem.appendChild(item)
               })
             })
-      }
-
-      async function search(query) {
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/search?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&type=video&videoEmbeddable=true&maxResults=50&part=snippet&q=" + query)).json();
-        console.log(resp.items.filter((k) => k.snippet.channelTitle.includes(" - Topic")))
       }
     </script>
   </body>
