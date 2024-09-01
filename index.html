@@ -9,6 +9,7 @@
   <body>
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
     <nav><div><a onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Recently Played">music_note</a><a onclick="tabChange(this)" id="saved" class="ct material-symbols-outlined" title="Playlists">playlist_play</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
+    <h1 id="header">Recently Played</h1>
     <div class="container" id="settingsC"></div>
     <div class="container" id="homeC"></div>
     <div class="container" id="savedC"></div>
@@ -59,12 +60,17 @@
 
       function loadList(list,start) {
         frame.style.display = "block"
-        frame.src = "player?list=" + list + "&v=" + start
-        
+        if (start) {
+          frame.src = "player?list=" + list + "&v=" + start
+          addRecent(start)
+        } else {
+          frame.src = "player?list=" + list
+        }
         setTimeout(maximize,10)
       }
 
       function loadSong(id) {
+        addRecent(id)
         frame.style.display = "block"
         frame.src = "player?v=" + id
         setTimeout(maximize,10)
@@ -124,8 +130,9 @@
         }
       }
 
-      function showList(ids,elem) {
+      function showList(ids,elem,title) {
         elem.innerHTML = ""
+        header.innerText = title
             getInfo(ids,function(k) {
               k.forEach(function(data) {
                 var item = document.createElement("div")
@@ -137,6 +144,55 @@
                 elem.appendChild(item)
               })
             })
+      }
+
+      var recents = localStorage.getItem("songs")
+      if (recents) {
+        recents = recents.split(",")
+        showList(recents,homeC)
+      } else {
+        recents = []
+        homeC.innerHTML = "To play a song, click the play button above."
+      }
+      var lists = localStorage.getItem("lists")
+      if (lists) {
+        lists = JSON.parse(lists)
+        Object.keys(lists).forEach(function(k) {
+          var data = lists[k]
+          var item = document.createElement("div")
+          item.classList = "song"
+          item.innerHTML = `<img class="thumbnail" src="${data.thumb}" height="70">${k}`
+          item.onclick = function() {
+            showList(data.items,savedC,k)
+          }
+          elem.appendChild(item)
+        })
+      } else {
+        lists = {}
+        homeC.innerHTML = "To add a playlist, click the + button."
+      }
+
+      function createList() {
+          lists[prompt("Playlist Title")] = {};
+          localStorage.setItem("lists",JSON.stringify(lists))
+      }
+
+      function addToList(song,list) {
+        lists[list].items.push(song)
+        getInfo(ids[0],function(data) {
+          tempList.thumb = data[0].cover
+        })
+        localStorage.setItem("lists",JSON.stringify(lists))
+      }
+
+      function removeList(list) {
+        delete lists[list]
+        localStorage.setItem("lists",JSON.stringify(lists))
+      }
+
+      function addRecent(id) {
+        recents.push(id)
+        localStorage.setItem("songs",recents)
       }
     </script>
   </body>
