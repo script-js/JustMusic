@@ -183,6 +183,6 @@ nav {
   opacity: 1;
 }
 
-.ct .active {
+.ct.active {
   opacity: 1;
 }
