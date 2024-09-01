@@ -177,6 +177,7 @@ nav {
   display: inline-grid;
   align-items: center;
   width: 5%;
+  position: fixed;
   height: 100%;
 }
 
