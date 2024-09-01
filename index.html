@@ -8,8 +8,20 @@
   </head>
   <body>
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
-    <div id="test"></div>
+    <nav><a id="library" class="material-symbols-outlined" title="Recently Played">queue_music</a></nav>
     <script>
+      var currentTab = "library";
+      function tabChange(tab) {
+        tab.classList = "active";
+        var tabid = tab.id
+        document.getElementById(tabid + "C").style.display = "block";
+        if (currentTab != tabid) {
+          document.getElementById(currentTab + "C").style.display = "none";
+          document.getElementById(currentTab).classList = "";
+        }
+        currentTab = tabid
+      }
+      
       function maximize() {
         frame.width = "101%"
         frame.height = "101%"
@@ -45,6 +57,7 @@
       function loadList(list,start) {
         frame.style.display = "block"
         frame.src = "player?list=" + list + "&v=" + start
+        
         setTimeout(maximize,10)
       }
 
@@ -84,9 +97,9 @@
       
       async function getList(url,elem) {
         if (url.includes("playlist")) {
-          var id = new URLSearchParams(url.replace(".youtube.com/playlist","").replace("https://music","").replace("https://www","").replace("https://","")).get("list")
+          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://","")).get("list")
         } else if (url.includes("watch")) {
-          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("https://music","").replace("https://www","").replace("https://","")).get("list")
+          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://","")).get("list")
         } else {
           alert("Invalid URL")
           return;
