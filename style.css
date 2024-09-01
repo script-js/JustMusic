@@ -172,10 +172,10 @@ nav {
 }
 
 nav a {
-  display: block;
+  display: block !important;
   opacity: 0.8;
   cursor: pointer;
-  font-size: 7vw;
+  font-size: 7vw !important;
 }
 
 nav a:hover {
