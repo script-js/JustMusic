@@ -127,7 +127,8 @@
       async function getList(id,elem) {
         var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails")).json();
         if (resp.items) {
-          showList(resp.items.map((x) => x.contentDetails.videoId),elem);
+          var resp2 = await (await fetch("https://www.googleapis.com/youtube/v3/playlists?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + id + "&part=snippet")).json();
+          showList(resp.items.map((x) => x.contentDetails.videoId),elem,resp2.items[0].snippet.title);
         } else {
           alert("Error getting playlist")
         }
@@ -135,7 +136,7 @@
 
       function showList(ids,elem,title) {
         elem.innerHTML = ""
-        header.innerText = title
+        if (title) {header.innerText = title}
             getInfo(ids,function(k) {
               k.forEach(function(data) {
                 var item = document.createElement("div")
@@ -175,8 +176,8 @@
         homeC.innerHTML = "To add a playlist, click the + button."
       }
 
-      function createList() {
-          lists[prompt("Playlist Title")] = {};
+      function createList(ids) {
+          lists[prompt("Playlist Title")] = {items:ids};
           localStorage.setItem("lists",JSON.stringify(lists))
       }
 
