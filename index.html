@@ -9,8 +9,8 @@
   <body>
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
     <nav><div><a onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Recently Played">music_note</a><a onclick="tabChange(this)" id="saved" class="ct material-symbols-outlined" title="Playlists">playlist_play</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
-    <div style="display:inline;width:auto">
-    <h1 id="header">Recently Played</h1>
+    <div style="display:inline-block;width:auto;font-size: 20px">
+    <h1 id="header" style="font-size: 30px">Recently Played</h1>
     <div class="container" id="settingsC"></div>
     <div class="container" id="homeC"></div>
     <div class="container" id="savedC"></div>
@@ -18,6 +18,7 @@
     <script>
       var currentTab = "home";
       function tabChange(tab) {
+        header.innerHTML = tab.title
         tab.classList = "material-symbols-outlined ct active";
         var tabid = tab.id
         document.getElementById(tabid + "C").style.display = "block";
