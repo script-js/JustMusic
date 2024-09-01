@@ -178,8 +178,8 @@
         savedC.innerHTML = "To add a playlist, click the + button."
       }
 
-      function createList(ids) {
-          lists[prompt("Playlist Title")] = {items:ids};
+      function createList() {
+          lists[prompt("Playlist Title")] = {items:[]};
           localStorage.setItem("lists",JSON.stringify(lists))
       }
 
