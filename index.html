@@ -63,6 +63,7 @@
 
       function loadList(list,start) {
         frame.style.display = "block"
+        minimize()
         if (start) {
           frame.src = "player?list=" + list + "&v=" + start
           addRecent(start)
@@ -74,6 +75,7 @@
 
       function loadSong(id) {
         addRecent(id)
+        minimize()
         frame.style.display = "block"
         frame.src = "player?v=" + id
         setTimeout(maximize,10)
