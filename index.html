@@ -100,7 +100,7 @@
 
       function fromYT(url) {
         if (url.includes("playlist")) {
-          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://","")).
+          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://",""))
         } else if (url.includes("watch")) {
           var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://",""))
         } else {
