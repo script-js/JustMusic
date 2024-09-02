@@ -19,6 +19,8 @@
       var currentTab = "home";
       function tabChange(tab) {
         header.innerHTML = tab.title
+        if (tab == homeC) {header.innerHTML += "<span onclick='fromYT()' class='material-symbols-outlined' class='ct'>play</span>"}
+        if (tab == savedC) {header.innerHTML += "<span onclick='createList()' class='material-symbols-outlined' class='ct'>add</span>"}
         tab.classList = "material-symbols-outlined ct active";
         var tabid = tab.id
         document.getElementById(tabid + "C").style.display = "block";
@@ -109,9 +111,10 @@
         }
       }
 
-      function fromYT(url) {
+      function fromYT() {
+        var url = prompt("YouTube Link").replace("youtu.be/","music.youtube.com/watch?v=")
         if (url.includes("playlist")) {
-          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://",""))
+          var id = new URLSearchParams(url.replace(".youtube.com/playlist").replace("music","").replace("www","").replace("https://","").replace("http://",""))
         } else if (url.includes("watch")) {
           var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://",""))
         } else {
