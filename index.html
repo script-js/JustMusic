@@ -126,7 +126,7 @@
       }
 
       function fromYT() {
-        var url = prompt("YouTube Link").replace("youtu.be/","music.youtube.com/watch?v=").replace(".youtube.com/watch").replace(".youtube.com/playlist").replace("music","").replace("www","").replace("https://","").replace("http://","")
+        var url = prompt("YouTube Link").replace("youtu.be/","music.youtube.com/watch?v=").replace(".youtube.com/watch","").replace(".youtube.com/playlist","").replace("music","").replace("www","").replace("https://","").replace("http://","")
         console.log(url)
         var id = new URLSearchParams(url)
         if (id.get("list")) {
