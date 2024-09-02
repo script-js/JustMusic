@@ -22,12 +22,12 @@
         header.innerHTML = tab.title 
         var action = tab.getAttribute("data-action")
         if (action) {
-          control.style.display = "block !important"
+          control.style.display = "block"
           control.innerHTML = tab.getAttribute("data-action-icon")
           control.onclick = window[action]
         } else {
           console.log()
-          control.style.display = "none !important"
+          control.style.display = "none"
         }
         tab.classList = "material-symbols-outlined ct active";
         var tabid = tab.id
