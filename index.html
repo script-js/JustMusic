@@ -8,7 +8,7 @@
   </head>
   <body>
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
-    <nav><div><a data-action="fromYT" data-action-icon="youtube_activity" onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Music Library">music_note</a><a onclick="tabChange(this)" id="saved" class="ct material-symbols-outlined" title="Playlists" data-action="createList" data-action-icon="add">playlist_play</a><a onclick="tabChange(this)" id="queue" class="ct material-symbols-outlined" title="Queue">queue_music</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
+    <nav><div><a data-action="fromYT" data-action-icon="youtube_activity" onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Music Library">music_note</a><a onclick="tabChange(this)" id="saved" class="ct material-symbols-outlined" title="Playlists" data-action="createList" data-action-icon="add">playlist_play</a><a onclick="tabChange(this)" id="queue" class="ct material-symbols-outlined" title="Queue" data-action="saveQ" data-action-icon="save">queue_music</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
     <div style="display:inline-block;width:90%;font-size: 20px;margin-left:5%">
     <h1 style="font-size: 30px"><span id="header">Music Library</span><span id="control" onclick='fromYT()' class='material-symbols-outlined ct active' style='float:right'>youtube_activity</span></h1>
     <div class="container" id="settingsC"></div>
@@ -38,6 +38,10 @@
         }
         currentTab = tabid;
         refresh()
+      }
+
+      function saveQ() {
+        createListFromIds(currentQueue)
       }
       
       function maximize() {
@@ -167,13 +171,13 @@
 
       var recents = localStorage.getItem("songs")
       var lists = localStorage.getItem("lists")
-      if (lists) {lists = JSON.parse(lists)}
-      if (recents) {recents = recents.split(",")}
+      if (lists) {lists = JSON.parse(lists)} else {lists = {}}
+      if (recents) {recents = recents.split(",")} else {recents = []}
+      var currentQueue = [];
       function refresh() {
       if (recents) {
         showList(recents,homeC)
       } else {
-        recents = []
         homeC.innerHTML = "To play a song or playlist, click the button above."
       }
       if (lists) {
@@ -185,11 +189,11 @@
           item.onclick = function() {
             showList(data.items,queueC,k)
             tabChange(queue)
+            currentQueue = data.items
           }
           savedC.appendChild(item)
         })
       } else {
-        lists = {}
         savedC.innerHTML = "To add a playlist, click the + button."
       }
       }
@@ -200,14 +204,21 @@
           localStorage.setItem("lists",JSON.stringify(lists))
       }
 
+      function createListFromIds(ids) {
+          lists[prompt("Playlist Title")] = {items:ids};
+          localStorage.setItem("lists",JSON.stringify(lists))
+      }
+
       function addToList(song,list) {
         lists[list].items.push(song)
+        if (lists[list].items.length == 1) {
         getInfo(ids[0],function(data) {
           tempList.thumb = data[0].cover
         })
+        }
         localStorage.setItem("lists",JSON.stringify(lists))
       }
-
+      
       function removeList(list) {
         delete lists[list]
         localStorage.setItem("lists",JSON.stringify(lists))
