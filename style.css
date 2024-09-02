@@ -182,7 +182,6 @@ nav {
 }
 
 .ct {
-  display: block !important;
   opacity: 0.6;
   cursor: pointer;
 }
