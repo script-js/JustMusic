@@ -21,12 +21,12 @@
       function tabChange(tab) {
         header.innerHTML = tab.title 
         var action = tab.getAttribute("data-action")
-        console.log(action)
         if (action) {
           control.style.display = "block !important"
           control.innerHTML = tab.getAttribute("data-action-icon")
           control.onclick = window[action]
         } else {
+          console.log()
           control.style.display = "none !important"
         }
         tab.classList = "material-symbols-outlined ct active";
@@ -167,16 +167,16 @@
 
       var recents = localStorage.getItem("songs")
       var lists = localStorage.getItem("lists")
+      if (lists) {lists = JSON.parse(lists)}
+      if (recents) {recents = recents.split(",")}
       function refresh() {
       if (recents) {
-        recents = recents.split(",")
         showList(recents,homeC)
       } else {
         recents = []
         homeC.innerHTML = "To play a song or playlist, click the button above."
       }
       if (lists) {
-        lists = JSON.parse(lists)
         Object.keys(lists).forEach(function(k) {
           var data = lists[k]
           var item = document.createElement("div")
