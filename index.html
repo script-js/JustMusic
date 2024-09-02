@@ -19,9 +19,9 @@
     <script>
       var currentTab = "home";
       function tabChange(tab) {
-        refresh()
         header.innerHTML = tab.title 
         var action = tab.getAttribute("data-action")
+        console.log(action)
         if (action) {
           control.style.display = "block !important"
           control.innerHTML = JSON.parse(action)[1]
@@ -36,7 +36,8 @@
           document.getElementById(currentTab + "C").style.display = "none";
           document.getElementById(currentTab).classList = "material-symbols-outlined ct";
         }
-        currentTab = tabid
+        currentTab = tabid;
+        refresh()
       }
       
       function maximize() {
