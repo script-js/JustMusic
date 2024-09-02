@@ -8,9 +8,9 @@
   </head>
   <body>
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
-    <nav><div><a onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Recently Played">music_note</a><a onclick="tabChange(this)" id="saved" class="ct material-symbols-outlined" title="Playlists">playlist_play</a><a onclick="tabChange(this)" id="queue" class="ct material-symbols-outlined" title="Queue">queue_music</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
+    <nav><div><a data-action="[fromYT,'youtube_activity']" onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Music Library">music_note</a><a onclick="tabChange(this)" id="saved" class="ct material-symbols-outlined" title="Playlists"data-action="[createList,'add']">playlist_play</a><a onclick="tabChange(this)" id="queue" class="ct material-symbols-outlined" title="Queue">queue_music</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
     <div style="display:inline-block;width:90%;font-size: 20px;margin-left:5%">
-    <h1 style="font-size: 30px"><span id="header">Recently Played</span><span id="control" onclick='fromYT()' class='material-symbols-outlined ct active' style='float:right'>play_arrow</span></h1>
+    <h1 style="font-size: 30px"><span id="header">Music Library</span><span id="control" onclick='fromYT()' class='material-symbols-outlined ct active' style='float:right'>youtube_activity</span></h1>
     <div class="container" id="settingsC"></div>
     <div class="container" id="homeC" style="display:block"></div>
     <div class="container" id="savedC"></div>
@@ -20,13 +20,13 @@
       var currentTab = "home";
       function tabChange(tab) {
         header.innerHTML = tab.title 
-        if (tab == home) {
-          control.innerHTML = "play_arrow"
-          control.onclick = fromYT
-        }
-        if (tab == saved) {
-          control.innerHTML = "add"
-          control.onclick = createList
+        var action = tab.getAttribute("data-action")
+        if (action) {
+          control.style.display = "block !important"
+          control.innerHTML = JSON.parse(action)[1]
+          control.onclick = JSON.parse(action)[0]
+        } else {
+          control.style.display = "none !important"
         }
         tab.classList = "material-symbols-outlined ct active";
         var tabid = tab.id
