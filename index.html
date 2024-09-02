@@ -19,8 +19,8 @@
       var currentTab = "home";
       function tabChange(tab) {
         header.innerHTML = tab.title
-        if (tab == homeC) {header.innerHTML += "<span onclick='fromYT()' class='material-symbols-outlined' class='ct'>play</span>"}
-        if (tab == savedC) {header.innerHTML += "<span onclick='createList()' class='material-symbols-outlined' class='ct'>add</span>"}
+        if (tab == home) {header.innerHTML += "<span onclick='fromYT()' class='material-symbols-outlined' class='ct'>play_arrow</span>"}
+        if (tab == saved) {header.innerHTML += "<span onclick='createList()' class='material-symbols-outlined' class='ct'>add</span>"}
         tab.classList = "material-symbols-outlined ct active";
         var tabid = tab.id
         document.getElementById(tabid + "C").style.display = "block";
