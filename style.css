@@ -186,6 +186,10 @@ nav {
   cursor: pointer;
 }
 
+.ct.material-symbols-outlined {
+  display: block;
+}
+
 .ct:hover {
   opacity: 1;
 }
