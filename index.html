@@ -126,19 +126,14 @@
 
       function fromYT() {
         var url = prompt("YouTube Link").replace("youtu.be/","music.youtube.com/watch?v=")
-        if (url.includes("playlist")) {
-          var id = new URLSearchParams(url.replace(".youtube.com/playlist").replace("music","").replace("www","").replace("https://","").replace("http://",""))
-        } else if (url.includes("watch")) {
-          var id = new URLSearchParams(url.replace(".youtube.com/watch").replace("music","").replace("www","").replace("https://","").replace("http://",""))
-        } else {
-          alert("Invalid URL")
-          return;
-        }
+        var id = new URLSearchParams(url.replace(".youtube.com/watch").replace(".youtube.com/playlist").replace("music","").replace("www","").replace("https://","").replace("http://",""))
         if (id.get("list")) {
-          tabChange(queueC)
+          tabChange(queue)
           getList(id.get("list"),queueC)
         } else if (id.get("v")) {
           loadSong(id.get("v"))
+        } else {
+          alert("Invalid URL")
         }
       }
       
