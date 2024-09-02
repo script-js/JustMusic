@@ -8,9 +8,9 @@
   </head>
   <body>
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
-    <nav><div><a onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Recently Played">music_note</a><a onclick="tabChange(this)" id="saved" class="ct material-symbols-outlined" title="Playlists">playlist_play</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
+    <nav><div><span id="control" onclick='fromYT()' class='material-symbols-outlined ct' style='cursor:pointer;align-self:start;'>play_arrow</span><a onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Recently Played">music_note</a><a onclick="tabChange(this)" id="saved" class="ct material-symbols-outlined" title="Playlists">playlist_play</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
     <div style="display:inline-block;width:90%;font-size: 20px;margin-left:5%">
-    <h1 id="header" style="font-size: 30px">Recently Played&nbsp;&nbsp;<span onclick='fromYT()' class='material-symbols-outlined ct' style="font-size" style='cursor:pointer'>play_arrow</span></h1>
+    <h1 id="header" style="font-size: 30px">Recently Played</h1>
     <div class="container" id="settingsC"></div>
     <div class="container" id="homeC" style="display:block"></div>
     <div class="container" id="savedC"></div>
@@ -19,8 +19,14 @@
       var currentTab = "home";
       function tabChange(tab) {
         header.innerHTML = tab.title 
-        if (tab == home) {header.innerHTML += "&nbsp;&nbsp;<span onclick='fromYT()' class='material-symbols-outlined ct' style='cursor:pointer'>play_arrow</span>"}
-        if (tab == saved) {header.innerHTML += "&nbsp;&nbsp;<span onclick='createList()' class='material-symbols-outlined ct' style='cursor:pointer'>add</span>"}
+        if (tab == home) {
+          control.innerHTML += "play_arrow"
+          control.onclick = fromYT
+        }
+        if (tab == saved) {
+          control.innerHTML += "add"
+          control.onclick = createList
+        }
         tab.classList = "material-symbols-outlined ct active";
         var tabid = tab.id
         document.getElementById(tabid + "C").style.display = "block";
