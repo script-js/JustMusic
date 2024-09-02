@@ -19,6 +19,7 @@
     <script>
       var currentTab = "home";
       function tabChange(tab) {
+        refresh()
         header.innerHTML = tab.title 
         var action = tab.getAttribute("data-action")
         if (action) {
@@ -171,7 +172,7 @@
         showList(recents,homeC)
       } else {
         recents = []
-        homeC.innerHTML = "To play a song, click the play button above."
+        homeC.innerHTML = "To play a song or playlist, click the button above."
       }
       if (lists) {
         lists = JSON.parse(lists)
