@@ -221,7 +221,7 @@
       }
 
       function addRecent(id) {
-        if (recents.includes(id)) {
+        if (!recents.includes(id)) {
           recents.push(id)
         }
         localStorage.setItem("songs",recents)
