@@ -223,8 +223,8 @@
       function addRecent(id) {
         if (!recents.includes(id)) {
           recents.push(id)
+          localStorage.setItem("songs",recents)
         }
-        localStorage.setItem("songs",recents)
       }
     </script>
   </body>
