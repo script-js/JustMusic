@@ -22,11 +22,9 @@
         header.innerHTML = tab.title 
         var action = tab.getAttribute("data-action")
         if (action) {
+          setAction(action,tab.getAttribute("data-action-icon"))
           control.style.display = "block"
-          control.innerHTML = tab.getAttribute("data-action-icon")
-          control.onclick = window[action]
         } else {
-          console.log()
           control.style.display = "none"
         }
         tab.classList = "material-symbols-outlined ct active";
@@ -39,6 +37,15 @@
         currentTab = tabid;
       }
 
+      function setAction(action,icon) {
+        control.innerHTML = icon
+        if (typeof action == string) {
+          control.onclick = window[action]
+        } else {
+          control.onclick = action
+        }
+      }
+      
       function saveQ() {
         console.log(currentQueue)
         createListFromIds(currentQueue)
@@ -139,11 +146,18 @@
         }
       }
       
-      async function getList(id,elem) {
-        var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails")).json();
+      async function getList(id,elem,pt) {
+        if (pt) {
+          var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails&pageToken=" + pt)).json();
+        } else {
+          var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails")).json();
+        }
         if (resp.items) {
           var resp2 = await (await fetch("https://www.googleapis.com/youtube/v3/playlists?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + id + "&part=snippet")).json();
           showList(resp.items.map((x) => x.contentDetails.videoId),elem,resp2.items[0].snippet.title);
+          if (resp.nextPageToken) {
+            getList(id,elem,resp.nextPageToken)
+          }
         } else {
           alert("Error getting playlist")
         }
@@ -171,12 +185,12 @@
       if (recents) {recents = recents.split(",")} else {recents = []}
       var currentQueue = [];
       function refresh() {
-      if (recents) {
+      if (localStorage.getItem("songs")) {
         showList(recents,homeC)
       } else {
         homeC.innerHTML = "To play a song or playlist, click the button above."
       }
-      if (lists) {
+      if (localStorage.getItem("lists")) {
         Object.keys(lists).forEach(function(k) {
           var data = lists[k]
           var item = document.createElement("div")
@@ -184,9 +198,11 @@
           item.innerHTML = `<img class="thumbnail" src="${data.thumb}" height="70">${k}`
           item.onclick = function() {
             showList(data.items,queueC,k)
+            setAction(function() {addToList(prompt("YouTube Link"),k)},"youtube_activity")
             tabChange(queue)
             currentQueue = data.items
           }
+          item.oncontextmenu = function
           savedC.appendChild(item)
         })
       } else {
