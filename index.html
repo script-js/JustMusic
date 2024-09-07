@@ -39,7 +39,7 @@
 
       function setAction(action,icon) {
         control.innerHTML = icon
-        if (typeof action == string) {
+        if (typeof action == "string") {
           control.onclick = window[action]
         } else {
           control.onclick = action
