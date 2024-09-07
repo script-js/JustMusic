@@ -8,9 +8,9 @@
   </head>
   <body>
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
-    <nav><div><a data-action="fromYT" data-action-icon="youtube_activity" onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Music">music_note</a><a onclick="tabChange(this);refresh()" id="saved" class="ct material-symbols-outlined" title="Playlists" data-action="createList" data-action-icon="youtube_activity">playlist_play</a><a onclick="tabChange(this)" id="queue" class="ct material-symbols-outlined" title="Queue" data-action="saveQ" data-action-icon="save">queue_music</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
+    <nav><div><a data-action="fromYT" data-action-icon="youtube_activity" onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Music">music_note</a><a onclick="tabChange(this);refresh()" id="saved" class="ct material-symbols-outlined" title="Playlists" data-action="createList" data-action-icon="youtube_activity">playlist_play</a><a onclick="tabChange(this)" id="queue" class="ct material-symbols-outlined" title="Queue">queue_music</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
     <div style="display:inline-block;width:90%;font-size: 20px;margin-left:10%">
-    <h1 style="font-size: 30px"><span id="header">Music Library</span><span id="control" onclick='fromYT()' class='material-symbols-outlined ct active' style='float:right'>youtube_activity</span></h1>
+    <h1 style="font-size: 30px"><span id="header">Music</span><span id="control" onclick='fromYT()' class='material-symbols-outlined ct active' style='float:right'>youtube_activity</span></h1>
     <div class="container" id="settingsC"></div>
     <div class="container" id="homeC" style="display:block"></div>
     <div class="container" id="savedC"></div>
@@ -44,11 +44,6 @@
         } else {
           control.onclick = action
         }
-      }
-      
-      function saveQ() {
-        console.log(currentQueue)
-        createListFromIds(currentQueue)
       }
       
       function maximize() {
@@ -147,6 +142,7 @@
       }
       
       async function getList(id,elem,pt) {
+        addList(id)
         if (pt) {
           var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails&pageToken=" + pt)).json();
         } else {
@@ -183,7 +179,6 @@
       var lists = localStorage.getItem("lists")
       if (lists) {lists = JSON.parse(lists)} else {lists = {}}
       if (recents) {recents = recents.split(",").reverse()} else {recents = []}
-      var currentQueue = [];
       function refresh() {
       if (localStorage.getItem("songs")) {
         showList(recents,homeC)
@@ -200,7 +195,6 @@
             showList(data.items,queueC,k)
             setAction(function() {addToList(prompt("YouTube Link"),k)},"youtube_activity")
             tabChange(queue)
-            currentQueue = data.items
           }
           savedC.appendChild(item)
         })
