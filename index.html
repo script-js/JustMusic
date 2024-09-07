@@ -186,19 +186,17 @@
         homeC.innerHTML = "To play a song or playlist, click the button above."
       }
       if (localStorage.getItem("lists")) {
-        /* Object.keys(lists).forEach(function(k) {
+        Object.keys(lists).forEach(function(k) {
           var data = lists[k]
           var item = document.createElement("div")
           item.classList = "song"
           item.innerHTML = `<img class="thumbnail" src="${data.thumb}" height="70">${k}`
           item.onclick = function() {
-            showList(data.items,queueC,k)
-            setAction(function() {addToList(prompt("YouTube Link"),k)},"youtube_activity")
+            getList(data.items,queueC)
             tabChange(queue)
           }
           savedC.appendChild(item)
         })
-        */
       } else {
         savedC.innerHTML = "To add a playlist, click the + button."
       }
