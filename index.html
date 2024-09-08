@@ -186,13 +186,14 @@
         homeC.innerHTML = "To play a song or playlist, click the button above."
       }
       if (localStorage.getItem("lists")) {
-        Object.keys(lists).forEach(function(k) {
-          var data = lists[k]
+        lists.forEach(async function(k) {
+          var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlists?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + k + "&part=snippet")).json();
+          var data = resp.items[0].snippet
           var item = document.createElement("div")
           item.classList = "song"
-          item.innerHTML = `<img class="thumbnail" src="${data.thumb}" height="70">${k}`
+          item.innerHTML = `<img class="thumbnail" src="${data.thumbnails.maxres.url}" height="70">${data.title}`
           item.onclick = function() {
-            getList(data.items,queueC)
+            getList(ks,queueC)
             tabChange(queue)
           }
           savedC.appendChild(item)
