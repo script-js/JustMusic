@@ -205,38 +205,14 @@
       }
       refresh()
 
-      function createList() {
-          lists[prompt("Playlist Title")] = {items:[]};
-          localStorage.setItem("lists",JSON.stringify(lists))
-      }
-
       function addList(id) {
+        console.log(id)
         if (!lists.includes(id)) {
           lists.push(id)
           localStorage.setItem("lists",lists)
         }
       }
-
-      function createListFromIds(ids) {
-          lists[prompt("Playlist Title")] = {items:ids};
-          localStorage.setItem("lists",JSON.stringify(lists))
-      }
-
-      function addToList(song,list) {
-        lists[list].items.push(song)
-        if (lists[list].items.length == 1) {
-        getInfo(ids[0],function(data) {
-          tempList.thumb = data[0].cover
-        })
-        }
-        localStorage.setItem("lists",JSON.stringify(lists))
-      }
       
-      function removeList(list) {
-        delete lists[list]
-        localStorage.setItem("lists",JSON.stringify(lists))
-      }
-
       function addRecent(id) {
         if (!recents.includes(id)) {
           recents.push(id)
