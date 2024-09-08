@@ -177,7 +177,7 @@
 
       var recents = localStorage.getItem("songs")
       var lists = localStorage.getItem("lists")
-      if (lists) {lists = recents.split(",").reverse()} else {lists = []}
+      if (lists) {lists = lists.split(",").reverse()} else {lists = []}
       if (recents) {recents = recents.split(",").reverse()} else {recents = []}
       function refresh() {
       if (localStorage.getItem("songs")) {
