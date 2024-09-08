@@ -150,8 +150,11 @@
         }
         if (resp.items) {
           var resp2 = await (await fetch("https://www.googleapis.com/youtube/v3/playlists?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + id + "&part=snippet")).json();
-          showList(resp.items.map((x) => x.contentDetails.videoId),elem,resp2.items[0].snippet.title);
+          var ids = resp.items.map((x) => x.contentDetails.videoId)
+          showList(ids,elem,resp2.items[0].snippet.title);
+          loadList(ids)
           if (resp.nextPageToken) {
+            console.log(resp.nextPageToken)
             getList(id,elem,resp.nextPageToken)
           }
         } else {
