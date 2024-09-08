@@ -194,7 +194,7 @@
           item.classList = "song"
           item.innerHTML = `<img class="thumbnail" src="${data.thumbnails.maxres.url}" height="70">${data.title}`
           item.onclick = function() {
-            getList(ks,queueC)
+            getList(k,queueC)
             tabChange(queue)
           }
           savedC.appendChild(item)
