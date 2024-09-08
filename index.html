@@ -188,6 +188,7 @@
       if (localStorage.getItem("lists")) {
         lists.forEach(async function(k) {
           var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlists?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + k + "&part=snippet")).json();
+          console.log(resp)
           var data = resp.items[0].snippet
           var item = document.createElement("div")
           item.classList = "song"
