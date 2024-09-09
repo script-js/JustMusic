@@ -108,7 +108,7 @@
             break;
           case YT.PlayerState.ENDED: b.innerHTML = "play_circle";clearInterval(progInt); if (playlist) {playlistItem()}
             break;
-          case YT.PlayerState.UNSTARTED: timeout = setTimeout(function() {t.innerHTML = "<span style='color:red'>Playback Error</span>"})
+          case YT.PlayerState.UNSTARTED: timeout = setTimeout(function() {t.innerHTML = "<span style='color:red'>Playback Error</span>"},3000)
         }
       }
 
