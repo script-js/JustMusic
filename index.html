@@ -92,10 +92,10 @@
         frame.style.display = "block"
         minimize()
         if (start) {
-          frame.src = "player?list=" + list + "&v=" + start
+          frame.src = "player?list=" + list + "&v=" + start + "&theme=" + styling
           addRecent(start)
         } else {
-          frame.src = "player?list=" + list + "&v=" + list[0]
+          frame.src = "player?list=" + list + "&v=" + list[0] + "&theme=" + styling
         }
         setTimeout(maximize,10)
       }
@@ -104,7 +104,7 @@
         addRecent(id)
         minimize()
         frame.style.display = "block"
-        frame.src = "player?v=" + id
+        frame.src = "player?v=" + id + "&theme=" + styling
         setTimeout(maximize,10)
       }
 
@@ -233,22 +233,24 @@
         }
       }
 
-      document.documentElement.style = ""
+      var styling = ""
       
       if (localStorage.getItem("bcolor")) {
-        document.documentElement.style += "--back:" + localStorage.getItem("bcolor")
+        styling += "--back:" + localStorage.getItem("bcolor") + ";"
         bcolor.value = localStorage.getItem("bcolor")
       }
 
       if (localStorage.getItem("acolor")) {
-        document.documentElement.style += "--accent:" + localStorage.getItem("acolor")
+        styling += "--accent:" + localStorage.getItem("acolor") + ";"
         acolor.value = localStorage.getItem("acolor")
       }
 
       if (localStorage.getItem("tcolor")) {
-        document.documentElement.style += "--text:" + localStorage.getItem("tcolor")
+        styling += "--text:" + localStorage.getItem("tcolor") + ";"
         tcolor.value = localStorage.getItem("tcolor")
       }
+      
+      document.documentElement.style = styling
     </script>
   </body>
 </html>
