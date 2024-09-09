@@ -154,7 +154,6 @@
           var ids = resp.items.map((x) => x.contentDetails.videoId)
           console.log(ids)
           showList(ids,elem,resp2.items[0].snippet.title);
-          loadList(ids)
           if (resp.nextPageToken) {
             console.log(resp.nextPageToken)
             getList(id,elem,resp.nextPageToken)
