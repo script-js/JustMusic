@@ -144,11 +144,12 @@
       async function getList(id,elem,pt) {
         addList(id)
         if (pt) {
-          var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails&pageToken=" + pt)).json();
+          var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=50&playlistId=" + id + "&part=contentDetails&pageToken=" + pt)).json();
         } else {
-          var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=100&playlistId=" + id + "&part=contentDetails")).json();
+          var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=50&playlistId=" + id + "&part=contentDetails")).json();
         }
         if (resp.items) {
+          console.log(resp.items)
           var resp2 = await (await fetch("https://www.googleapis.com/youtube/v3/playlists?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + id + "&part=snippet")).json();
           var ids = resp.items.map((x) => x.contentDetails.videoId)
           console.log(ids)
