@@ -79,6 +79,8 @@
       }
 
       function loadList(list,start) {
+        tabChange(queue)
+        showList(list,queueC)
         frame.style.display = "block"
         minimize()
         if (start) {
