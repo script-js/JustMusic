@@ -134,7 +134,7 @@
         var id = new URLSearchParams(url)
         if (id.get("list")) {
           tabChange(queue)
-          addList(id)
+          addList(id.get("list"))
           getList(id.get("list"),queueC)
         } else if (id.get("v")) {
           loadSong(id.get("v"))
