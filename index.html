@@ -233,6 +233,8 @@
         }
       }
 
+      document.documentElement.style = ""
+      
       if (localStorage.getItem("bcolor")) {
         document.documentElement.style += "--back:" + localStorage.getItem("bcolor")
         bcolor.value = localStorage.getItem("bcolor")
