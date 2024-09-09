@@ -134,6 +134,7 @@
         var id = new URLSearchParams(url)
         if (id.get("list")) {
           tabChange(queue)
+          addList(id)
           getList(id.get("list"),queueC)
         } else if (id.get("v")) {
           loadSong(id.get("v"))
@@ -143,7 +144,6 @@
       }
       
       async function getList(id,elem,pt) {
-        addList(id)
         if (pt) {
           var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=50&playlistId=" + id + "&part=contentDetails&pageToken=" + pt)).json();
         } else {
@@ -152,6 +152,7 @@
         if (resp.items) {
           console.log(resp.items)
           var resp2 = await (await fetch("https://www.googleapis.com/youtube/v3/playlists?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + id + "&part=snippet")).json();
+          setAction(function() {window.open("https://www.youtube.com/playlist?list=" + id)},"open_in_new")
           var ids = resp.items.map((x) => x.contentDetails.videoId)
           console.log(ids)
           showList(ids,elem,resp2.items[0].snippet.title);
