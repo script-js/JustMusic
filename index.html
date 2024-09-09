@@ -14,9 +14,9 @@
     <h1 style="font-size: 30px"><span id="header">Music</span><span id="control" onclick='fromYT()' class='material-symbols-outlined ct active' style='float:right'>youtube_activity</span></h1>
     <div class="container" id="settingsC">
       <h3>Theme</h3>
-      Background Color: <input type="color" onchange="localStorage.setItem('bcolor',this.value)"><br>
-      Accent Color: <input type="color" onchange="localStorage.setItem('acolor',this.value)"><br>
-      Text Color: <input type="color" onchange="localStorage.setItem('tcolor',this.value)"><br>
+      Background Color: <input id="bcolor" type="color" onchange="localStorage.setItem('bcolor',this.value)"><br>
+      Accent Color: <input type="color" id="acolor" onchange="localStorage.setItem('acolor',this.value)"><br>
+      Text Color: <input type="color" id="tcolor" onchange="localStorage.setItem('tcolor',this.value)"><br>
       <h3>Sync</h3>
       <button onclick="sjs.openDialog()">sync.js</button>
     </div>
@@ -231,6 +231,21 @@
           recents.push(id)
           localStorage.setItem("songs",recents)
         }
+      }
+
+      if (localStorage.getItem("bcolor")) {
+        document.documentElement.style += "--back:" + localStorage.getItem("bcolor")
+        bcolor.value = localStorage.getItem("bcolor")
+      }
+
+      if (localStorage.getItem("acolor")) {
+        document.documentElement.style += "--accent:" + localStorage.getItem("acolor")
+        acolor.value = localStorage.getItem("acolor")
+      }
+
+      if (localStorage.getItem("tcolor")) {
+        document.documentElement.style += "--text:" + localStorage.getItem("tcolor")
+        tcolor.value = localStorage.getItem("tcolor")
       }
     </script>
   </body>
