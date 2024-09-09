@@ -136,10 +136,12 @@
           tabChange(queue)
           addList(id.get("list"))
           getList(id.get("list"),queueC)
-        } else if (id.get("v")) {
-          loadSong(id.get("v"))
         } else {
-          alert("Invalid URL")
+          if (id.get("v")) {
+            loadSong(id.get("v"))
+          } else {
+            alert("Invalid URL")
+          }
         }
       }
       
@@ -150,19 +152,18 @@
           var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&maxResults=50&playlistId=" + id + "&part=contentDetails")).json();
         }
         if (resp.items) {
-          console.log(resp.items)
           var resp2 = await (await fetch("https://www.googleapis.com/youtube/v3/playlists?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + id + "&part=snippet")).json();
           control.style.display = "block"
           setAction(function() {window.open("https://www.youtube.com/playlist?list=" + id)},"open_in_new")
           var ids = resp.items.map((x) => x.contentDetails.videoId)
-          console.log(ids)
           showList(ids,elem,resp2.items[0].snippet.title);
           if (resp.nextPageToken) {
             console.log(resp.nextPageToken)
             getList(id,elem,resp.nextPageToken)
           }
         } else {
-          alert("Error getting playlist")
+          alert("Error getting playlist " + id)
+          console.log("https://www.youtube.com/playlist?list=" + id,resp)
         }
       }
 
