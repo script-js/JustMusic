@@ -152,6 +152,7 @@
         if (resp.items) {
           console.log(resp.items)
           var resp2 = await (await fetch("https://www.googleapis.com/youtube/v3/playlists?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + id + "&part=snippet")).json();
+          control.style.display = "block"
           setAction(function() {window.open("https://www.youtube.com/playlist?list=" + id)},"open_in_new")
           var ids = resp.items.map((x) => x.contentDetails.videoId)
           console.log(ids)
