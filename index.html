@@ -22,7 +22,7 @@
       <button onclick="sjs.openDialog()">sync.js</button>
       <h3>Advanced</h3>
       <input type="checkbox" checked name="c1"><label for="c1">Enable Drag and Drop links</label><br>
-      <input type="checkbox" checked name="c2" onchange="if (this.checked) {localStorage.setItem('restart','true')} else {localStorage.removeItem('restart')}"><label for="c2">Continue music when turning screen off/switching tabs</label>
+      <input type="checkbox" name="c2" onchange="if (this.checked) {localStorage.setItem('restart','true')} else {localStorage.removeItem('restart')}"><label for="c2">Continue music when turning screen off/switching tabs</label>
     </div>
     <div class="container" id="homeC" style="display:block"></div>
     <div class="container" id="savedC"></div>
@@ -255,6 +255,14 @@
       }
       
       document.documentElement.style = styling
+      if (localStorage.getItem("restart")) {
+        document.querySelector("[name='c2']").checked = true
+        window.onblur = function() {
+          if (frame.style.display == "block") {
+            frame.contentWindow.screenOff()
+          }
+        }
+      }
     </script>
   </body>
 </html>
