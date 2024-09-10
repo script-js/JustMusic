@@ -269,6 +269,6 @@ form {
   justify-content: center;
 }
 
-input[type="checkbox"]:checked {
-  background: var(--accent);
+input[type="checkbox"] {
+  accent-color: var(--accent);
 }
