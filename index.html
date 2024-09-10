@@ -11,7 +11,7 @@
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
     <nav><div><a data-action="fromYT" data-action-icon="youtube_activity" onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Music">music_note</a><a onclick="tabChange(this);" id="saved" class="ct material-symbols-outlined" title="Playlists" data-action="fromYT" data-action-icon="youtube_activity">playlist_play</a><a onclick="tabChange(this)" id="queue" class="ct material-symbols-outlined" title="Queue">queue_music</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
     <div style="display:inline-block;width:90%;font-size: 20px;margin-left:10%">
-    <form action="https://music.youtube.com/search"><input name="q" placeholder="Search YouTube Music..."><input type="submit" class="material-symbols-outlined" value="search"></form>
+    <form target="_blank" action="https://music.youtube.com/search"><input name="q" placeholder="Search YouTube Music..."><input type="submit" class="material-symbols-outlined" value="search"></form>
     <h1 style="font-size: 30px"><u><span id="header">Music</span></u><span id="control" onclick='fromYT()' class='material-symbols-outlined ct active' style='float:right'>youtube_activity</span></h1>
     <div class="container" id="settingsC">
       <h3>Theme</h3>
