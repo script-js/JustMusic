@@ -205,10 +205,11 @@ nav {
 }
 
 input[type="color"] {
-  background: var(--accent);
+  background: none;
   border: none;
   border-radius: 5px;
   outline: 1px solid;
+  cursor: pointer;
 }
 
 input[type="color"]:hover {
@@ -216,11 +217,12 @@ input[type="color"]:hover {
 }
 
 button {
-  background: var(--back);
+  background: none;
   border: none;
   border-radius: 5px;
   outline: 1px solid;
-  padding: 3px;
+  padding: 5px;
+  cursor: pointer;
 }
 
 button:hover {
