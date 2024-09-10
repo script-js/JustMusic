@@ -65,6 +65,10 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @media screen and (max-width: 730px) {
+  form input[name="q"] {
+    width: 95%
+  }
+  
   #thumb {
     width: 80%;
   }
@@ -244,11 +248,12 @@ form input[name="q"] {
 
 form input[name="q"]:focus {
   border: 1px solid black;
-  border-radius: 50%;
+  border-radius: 30px;
+  background: var(--back);
 }
 
 form input[name="q"]:hover {
-  border: 1px solid black;
+  border: 1px solid var(--accent);
   border-radius: 50%;
 }
 
