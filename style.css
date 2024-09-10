@@ -202,3 +202,26 @@ nav {
 .container {
   display:none
 }
+
+input[type="color"] {
+  background: var(--accent);
+  border: none;
+  border-radius: 5px;
+  outline: 1px solid;
+}
+
+input[type="color"]:hover {
+  border-radius: 3px;
+}
+
+button {
+  background: var(--accent);
+  border: none;
+  border-radius: 5px;
+  outline: 1px solid;
+  padding: 3px;
+}
+
+button:hover {
+  border-radius: 3px;
+}
