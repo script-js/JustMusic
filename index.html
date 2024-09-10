@@ -92,10 +92,10 @@
         frame.style.display = "block"
         minimize()
         if (start) {
-          frame.src = "player?list=" + list + "&v=" + start + "&theme=" + styling
+          frame.src = "player?list=" + list + "&v=" + start + "&theme=" + btoa(styling)
           addRecent(start)
         } else {
-          frame.src = "player?list=" + list + "&v=" + list[0] + "&theme=" + styling
+          frame.src = "player?list=" + list + "&v=" + list[0] + "&theme=" + btoa(styling)
         }
         setTimeout(maximize,10)
       }
@@ -104,7 +104,7 @@
         addRecent(id)
         minimize()
         frame.style.display = "block"
-        frame.src = "player?v=" + id + "&theme=" + styling
+        frame.src = "player?v=" + id + "&theme=" + btoa(styling)
         setTimeout(maximize,10)
       }
 
