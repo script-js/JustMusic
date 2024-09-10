@@ -32,6 +32,7 @@ body {
   background: #e9e9ed;
 }
 
+input[type="range"] {background:none}
 
 input[type="range"]::-moz-range-track {
   background: var(--accent);
