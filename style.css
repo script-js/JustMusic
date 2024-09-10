@@ -229,7 +229,13 @@ button:hover {
   border-radius: 3px;
 }
 
-.material-symbols-outlined[type="submit"] {
+form input[type="submit"] {
   border:none;
   background:none;
+  cursor:pointer;
+  border-radius: 100%;
+}
+
+form input[type="submit"]:hover {
+  background: rgba(0,0,0,0.3) 
 }
