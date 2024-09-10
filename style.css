@@ -106,6 +106,8 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @media screen and (min-width: 730px) {
+  form input[name="q"] {width: 50%;}
+  
   .ct {
     font-size: 70px !important;
   }
@@ -243,7 +245,6 @@ form input[type="submit"] {
 
 form input[name="q"] {
   padding: 1%;
-  width: 50%;
 }
 
 form input[name="q"]:focus {
@@ -254,7 +255,7 @@ form input[name="q"]:focus {
 
 form input[name="q"]:hover {
   border: 1px solid var(--accent);
-  border-radius: 50%;
+  border-radius: 30px;
 }
 
 form input[type="submit"]:hover {
