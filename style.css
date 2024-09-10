@@ -234,8 +234,30 @@ form input[type="submit"] {
   background:none;
   cursor:pointer;
   border-radius: 100%;
+  font-size: 4vh;
+}
+
+form input[name="q"] {
+  padding: 1%;
+  width: 50%;
+}
+
+form input[name="q"]:focus {
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+form input[name="q"]:hover {
+  border: 1px solid black;
+  border-radius: 50%;
 }
 
 form input[type="submit"]:hover {
-  background: rgba(0,0,0,0.3) 
+  background: rgba(0,0,0,0.3)
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
