@@ -51,6 +51,12 @@
         }
       }
 
+      function screenOff() {
+        if (player.getPlayerState() == YT.PlayerState.PLAYING) {
+          player.playVideo()
+        }
+      }
+
       function playlistItem(back) {
         prog.value = 0;
         thumb.src = "";
@@ -102,9 +108,9 @@
       function onPlayerStateChange(event) {
         console.log(event.data)
         switch (event.data) {
-          case YT.PlayerState.PAUSED: b.innerHTML = "play_circle"
+          case YT.PlayerState.PAUSED: b.innerHTML = "play_circle";
             break;
-          case YT.PlayerState.PLAYING: b.innerHTML = "pause_circle"; loadMeta(); timeouts.forEach(function(k) {clearTimeout(k)})
+          case YT.PlayerState.PLAYING: b.innerHTML = "pause_circle"; loadMeta(); timeouts.forEach(function(k) {clearTimeout(k)});
             break;
           case YT.PlayerState.ENDED: b.innerHTML = "play_circle";clearInterval(progInt); if (playlist) {playlistItem()}
             break;
