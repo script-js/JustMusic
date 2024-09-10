@@ -228,3 +228,8 @@ button {
 button:hover {
   border-radius: 3px;
 }
+
+.material-symbols-outlined[type="submit"] {
+  border:none;
+  background:none;
+}
