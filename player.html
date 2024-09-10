@@ -27,7 +27,7 @@
       var playlistString = new URLSearchParams(window.location.search).get("list")
       var theme = new URLSearchParams(window.location.search).get("theme")
       if (theme) {
-        document.documentElement.style = theme
+        document.documentElement.style = atob(theme)
       }
       if (playlistString) {
         var playlist = playlistString.split(",")
