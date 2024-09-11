@@ -181,7 +181,7 @@
         }
       }
 
-      function showList(ids,elem,title) {
+      function showList(ids,elem,title,songs) {
         elem.innerHTML = ""
         if (title) {header.innerText = title}
             getInfo(ids,function(k) {
@@ -191,6 +191,15 @@
                 item.innerHTML = `<img class="thumbnail" src="${data.cover}" height="70"><div><strong>${data.title}</strong><br>${data.artist}</div><div style="margin-left:auto">${data.duration}</div>`
                 item.onclick = function() {
                   loadList(ids,data.id)
+                }
+                if (songs) {
+                  item.oncontextmenu = function(e) {
+                    e.preventDefault()
+                    if (confirm("Are you sure you want to remove this playlist from your library?")) {
+                      delete recents[k]
+                      localStorage.setItem("songs",recents)
+                    }
+                  }
                 }
                 elem.appendChild(item)
               })
@@ -202,7 +211,7 @@
       if (lists) {lists = lists.split(",").reverse()} else {lists = []}
       if (recents) {recents = recents.split(",").reverse()} else {recents = []}
       if (localStorage.getItem("songs")) {
-        showList(recents,homeC)
+        showList(recents,homeC,"",true)
       } else {
         homeC.innerHTML = "To play a song or playlist, click the button above."
       }
@@ -217,6 +226,14 @@
           item.onclick = function() {
             getList(k,queueC)
             tabChange(queue)
+          }
+
+          item.oncontextmenu = function(e) {
+            e.preventDefault()
+            if (confirm("Are you sure you want to remove this playlist from your library?")) {
+              delete lists[k]
+              localStorage.setItem("lists",lists)
+            }
           }
           savedC.appendChild(item)
         })
