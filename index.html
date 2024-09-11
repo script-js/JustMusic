@@ -145,7 +145,7 @@
         if (!url) {
           var url = prompt("YouTube Link")
         }
-        var sp = url.replace("youtu.be/","music.youtube.com/watch?v=").replace(".youtube.com/watch","").replace(".youtube.com/playlist","").replace("music","").replace("www","").replace("https://","").replace("http://","")
+        var sp = url.replace("youtu.be/","music.youtube.com/watch?v=").replace("browse/","playlist?list=").replace(".youtube.com/watch","").replace(".youtube.com/playlist","").replace("music","").replace("www","").replace("https://","").replace("http://","")
         var id = new URLSearchParams(sp)
         if (id.get("list")) {
           tabChange(queue)
