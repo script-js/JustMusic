@@ -198,6 +198,7 @@
                     if (confirm("Are you sure you want to remove this playlist from your library?")) {
                       delete recents[k]
                       localStorage.setItem("songs",recents)
+                      location.reload()
                     }
                   }
                 }
@@ -233,6 +234,7 @@
             if (confirm("Are you sure you want to remove this playlist from your library?")) {
               delete lists[k]
               localStorage.setItem("lists",lists)
+              location.reload()
             }
           }
           savedC.appendChild(item)
