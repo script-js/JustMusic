@@ -18,6 +18,9 @@
       Background Color: <input value="#ffffff" id="bcolor" type="color" onchange="localStorage.setItem('bcolor',this.value)"><br>
       Accent Color: <input type="color" id="acolor" onchange="localStorage.setItem('acolor',this.value)"><br>
       Text Color: <input type="color" id="tcolor" onchange="localStorage.setItem('tcolor',this.value)"><br>
+      <h3>Bookmarklet</h3>
+      <p>Drag this into your bookmarks bar to easily add songs to your library:</p>
+      <a href="javascript:void(location.href = location.href.replace('watch','').replace('playlist','').replace('music.','').replace('www.','').replace('youtube.com','justmusic.pages.dev'))">Open in JustMusic</a>
       <h3>Sync</h3>
       <button onclick="sjs.openDialog()">sync.js</button>
       <h3>Advanced</h3>
