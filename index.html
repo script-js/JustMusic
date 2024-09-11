@@ -140,10 +140,12 @@
         }
       }
 
-      function fromYT() {
-        var url = prompt("YouTube Link").replace("youtu.be/","music.youtube.com/watch?v=").replace(".youtube.com/watch","").replace(".youtube.com/playlist","").replace("music","").replace("www","").replace("https://","").replace("http://","")
-        console.log(url)
-        var id = new URLSearchParams(url)
+      function fromYT(url) {
+        if (!url) {
+          var url = prompt("YouTube Link")
+        }
+        var sp = url.replace("youtu.be/","music.youtube.com/watch?v=").replace(".youtube.com/watch","").replace(".youtube.com/playlist","").replace("music","").replace("www","").replace("https://","").replace("http://","")
+        var id = new URLSearchParams(sp)
         if (id.get("list")) {
           tabChange(queue)
           addList(id.get("list"))
@@ -263,6 +265,7 @@
           }
         }
       }
+      if (!localStorage.getItem("nodrop")) {
     document.addEventListener('DOMContentLoaded', () => {
         const dropZone = document.body;
 
@@ -276,17 +279,20 @@
             // Remove the highlight when the dragged item leaves the drop zone
             dropZone.classList.remove('highlight');
         });
-
+       
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
             // Get the dropped URL
             const url = e.dataTransfer.getData('text/plain');
             // Log it (you can customize this part)
-            console.log(`Dropped link: ${url}`);
+            if (url.includes("youtube")) {
+              fromYT(url)
+            }
             // Remove the highlight
             dropZone.classList.remove('highlight');
         });
     });
+      }
     </script>
   </body>
 </html>
