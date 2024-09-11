@@ -1,0 +1,23 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "JustMusic",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "JustMusic",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon"
+    }
+  ],
+  "id": "justmusic",
+  "description": "Audio-only YouTube player using the YouTube iframe API",
+  "lang": "en",
+  "categories": [
+    "music"
+  ]
+}
