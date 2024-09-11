@@ -263,6 +263,30 @@
           }
         }
       }
+    document.addEventListener('DOMContentLoaded', () => {
+        const dropZone = document.body;
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            // Highlight the drop zone when something is dragged over it
+            dropZone.classList.add('highlight');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            // Remove the highlight when the dragged item leaves the drop zone
+            dropZone.classList.remove('highlight');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            // Get the dropped URL
+            const url = e.dataTransfer.getData('text/plain');
+            // Log it (you can customize this part)
+            console.log(`Dropped link: ${url}`);
+            // Remove the highlight
+            dropZone.classList.remove('highlight');
+        });
+    });
     </script>
   </body>
 </html>
