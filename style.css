@@ -148,7 +148,7 @@ input[type="range"]::-moz-range-thumb {
 #toggle {
   position: absolute;
   left: 0;
-  color: var(--back);
+  color: var(--accent);
   top: 0;
   cursor: pointer;
   background: rgba(0,0,0,0.7);
