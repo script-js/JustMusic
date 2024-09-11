@@ -185,7 +185,7 @@
         elem.innerHTML = ""
         if (title) {header.innerText = title}
             getInfo(ids,function(k) {
-              k.forEach(function(data) {
+              k.forEach(function(data,index) {
                 var item = document.createElement("div")
                 item.classList = "song"
                 item.innerHTML = `<img class="thumbnail" src="${data.cover}" height="70"><div><strong>${data.title}</strong><br>${data.artist}</div><div style="margin-left:auto">${data.duration}</div>`
@@ -196,7 +196,7 @@
                   item.oncontextmenu = function(e) {
                     e.preventDefault()
                     if (confirm("Are you sure you want to remove this playlist from your library?")) {
-                      delete recents[k]
+                      delete recents[index]
                       localStorage.setItem("songs",recents)
                       location.reload()
                     }
@@ -217,7 +217,7 @@
         homeC.innerHTML = "To play a song or playlist, click the button above."
       }
       if (localStorage.getItem("lists")) {
-        lists.forEach(async function(k) {
+        lists.forEach(async function(k,index) {
           var resp = await (await fetch("https://www.googleapis.com/youtube/v3/playlists?key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&id=" + k + "&part=snippet")).json();
           console.log(resp)
           var data = resp.items[0].snippet
@@ -232,7 +232,7 @@
           item.oncontextmenu = function(e) {
             e.preventDefault()
             if (confirm("Are you sure you want to remove this playlist from your library?")) {
-              delete lists[k]
+              delete lists[index]
               localStorage.setItem("lists",lists)
               location.reload()
             }
