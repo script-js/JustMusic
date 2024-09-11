@@ -272,3 +272,7 @@ form {
 input[type="checkbox"] {
   accent-color: var(--accent);
 }
+
+.highlight {
+  opacity: 0.3;
+}
