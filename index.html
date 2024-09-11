@@ -9,7 +9,7 @@
   </head>
   <body>
     <iframe id="frame" style="display:none" frameborder="0"></iframe>
-    <nav><div><a data-action="fromYT" data-action-icon="youtube_activity" onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Music">music_note</a><a onclick="tabChange(this);" id="saved" class="ct material-symbols-outlined" title="Playlists" data-action="fromYT" data-action-icon="youtube_activity">playlist_play</a><a onclick="tabChange(this)" id="queue" class="ct material-symbols-outlined" title="Queue">queue_music</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
+    <nav><div><a data-action="fromYT" data-action-icon="youtube_activity" onclick="tabChange(this)" id="home" class="active ct material-symbols-outlined" title="Music">music_note</a><a data-action="fromYT" data-action-icon="youtube_activity" onclick="tabChange(this)" id="albums" class="active ct material-symbols-outlined" title="Albums">album</a><a onclick="tabChange(this);" id="saved" class="ct material-symbols-outlined" title="Playlists" data-action="fromYT" data-action-icon="youtube_activity">playlist_play</a><a onclick="tabChange(this)" id="queue" class="ct material-symbols-outlined" title="Queue">queue_music</a><a onclick="tabChange(this)" id="settings" class="ct material-symbols-outlined" title="Settings">settings</a></div></nav>
     <div style="display:inline-block;width:90%;font-size: 20px;margin-left:10%">
     <form target="_blank" action="https://music.youtube.com/search"><input name="q" placeholder="Search YouTube Music..."><input type="submit" class="material-symbols-outlined" value="search"></form>
     <h1 style="font-size: 30px"><u><span id="header">Music</span></u><span id="control" onclick='fromYT()' class='material-symbols-outlined ct active' style='float:right'>youtube_activity</span></h1>
@@ -25,6 +25,7 @@
       <input type="checkbox" name="c2" onchange="if (this.checked) {localStorage.setItem('restart','true')} else {localStorage.removeItem('restart')}"><label for="c2">Continue music when turning screen off/switching tabs</label>
     </div>
     <div class="container" id="homeC" style="display:block"></div>
+    <div class="container" id="albumC"></div>
     <div class="container" id="savedC"></div>
     <div class="container" id="queueC">Nothing in queue</div>
     </div>
@@ -195,7 +196,7 @@
                 if (songs) {
                   item.oncontextmenu = function(e) {
                     e.preventDefault()
-                    if (confirm("Are you sure you want to remove this song from your library?")) {
+                    if (confirm("Are you sure you want to remove this from your library?")) {
                       delete recents[index]
                       localStorage.setItem("songs",recents)
                       location.reload()
@@ -223,7 +224,7 @@
           var data = resp.items[0].snippet
           var item = document.createElement("div")
           item.classList = "song"
-          item.innerHTML = `<img class="thumbnail" src="${data.thumbnails.maxres.url}" height="70">${data.title}`
+          item.innerHTML = `<img class="thumbnail" src="${data.thumbnails.maxres.url}" height="70">${data.title.replace("Album - ","")}`
           item.onclick = function() {
             getList(k,queueC)
             tabChange(queue)
@@ -231,13 +232,17 @@
 
           item.oncontextmenu = function(e) {
             e.preventDefault()
-            if (confirm("Are you sure you want to remove this playlist from your library?")) {
+            if (confirm("Are you sure you want to remove this from your library?")) {
               delete lists[index]
               localStorage.setItem("lists",lists)
               location.reload()
             }
           }
-          savedC.appendChild(item)
+          if (data.title.includes("Album - ")) {
+            albumsC.appendChild(item)
+          } else {
+            savedC.appendChild(item)
+          }
         })
       } else {
         savedC.innerHTML = "To add a playlist, click the + button."
