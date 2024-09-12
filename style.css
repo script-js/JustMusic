@@ -276,3 +276,9 @@ input[type="checkbox"] {
 .highlight {
   opacity: 0.3;
 }
+
+.material-symbols-outlined {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+user-select: none;
+}
