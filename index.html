@@ -335,6 +335,11 @@
 if (window.location.search) {
   fromYT(window.location.search)
 }
+window.onbeforeunload = function() {
+  if (frame.style.display == "block") {
+    return true;
+  }
+}
     </script>
   </body>
 </html>
