@@ -94,11 +94,10 @@
             'playsinline': 1
           },
           events: {
-            'onReady': function() {player.playVideo()},
+            'onReady': function() {player.loadVideoById(vidId);player.playVideo()},
             'onStateChange': onPlayerStateChange
           }
         });
-        player.loadVideoById(vidId)
       }
 
       var timeouts = [];
