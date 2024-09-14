@@ -90,11 +90,15 @@
         player = new YT.Player('player', {
           height: '0',
           width: '0',
+          videoId: vidId,
           playerVars: {
             'playsinline': 1
           },
           events: {
-            'onReady': function() {player.loadVideoById(vidId);player.playVideo()},
+            'onReady': function() {
+              player.playVideo();
+              timeouts.push(setTimeout(function() {t.innerHTML = "<span style='color:red'>Playback Error</span>"},1000))
+            },
             'onStateChange': onPlayerStateChange
           }
         });
