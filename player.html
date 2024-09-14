@@ -76,7 +76,6 @@
           sn.style = ""
         }
         vidId = playlist[currentVid]
-        player.loadVideoById(vidId)
         player.playVideo()
       }
       
@@ -91,7 +90,6 @@
         player = new YT.Player('player', {
           height: '0',
           width: '0',
-          videoId: vidId,
           playerVars: {
             'playsinline': 1
           },
@@ -100,6 +98,7 @@
             'onStateChange': onPlayerStateChange
           }
         });
+        player.loadVideoById(vidId)
       }
 
       var timeouts = [];
@@ -108,11 +107,13 @@
         switch (event.data) {
           case YT.PlayerState.PAUSED: b.innerHTML = "play_circle";
             break;
-          case YT.PlayerState.PLAYING: b.innerHTML = "pause_circle"; loadMeta(); timeouts.forEach(function(k) {clearTimeout(k)});
+          case YT.PlayerState.PLAYING: b.innerHTML = "pause_circle"; loadMeta();
             break;
           case YT.PlayerState.ENDED: b.innerHTML = "play_circle";clearInterval(progInt); if (playlist) {playlistItem()}
             break;
-          case YT.PlayerState.UNSTARTED: timeouts.push(setTimeout(function() {t.innerHTML = "<span style='color:red'>Playback Error</span>"},3000))
+          case YT.PlayerState.UNSTARTED: timeouts.push(setTimeout(function() {t.innerHTML = "<span style='color:red'>Playback Error</span>"},1000))
+            break;
+          case YT.PlayerState.BUFFERING: timeouts.forEach(function(k) {clearTimeout(k)});
         }
       }
 
