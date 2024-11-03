@@ -137,7 +137,20 @@ var progInt;
             prog.value = player.playerInfo.currentTime
           },1000)
       }
-var frame = window.top.frame;
+      
+    if (window.top.location.href = "https://justmusic.pages.dev/") {
+      var toggle = document.createElement("div")
+      toggle.classList = "material-symbols-outlined"
+      toggle.onclick = function() {
+        if (toggle.innerHTML == "keyboard_arrow_down") {
+          window.top.minimize()
+        } else {
+          window.top.maximize()
+        }
+      }
+      toggle.innerHTML = "keyboard_arrow_down"
+      document.documentElement.appendChild(toggle)
+    }
     </script>
   </body>
 </html>
