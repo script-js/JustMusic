@@ -93,14 +93,6 @@
         frame.height = ""
       }
 
-      function toggleMM() {
-        if (toggle.innerHTML == "keyboard_arrow_down") {
-          window.top.minimize()
-        } else {
-          window.top.maximize()
-        }
-      }
-
       function loadList(list,start) {
         tabChange(queue)
         showList(list,queueC)
@@ -126,7 +118,13 @@
       var toggle = document.createElement("div")
       toggle.id = "toggle"
       toggle.classList = "material-symbols-outlined"
-      toggle.onclick = toggleMM
+      toggle.onclick = function() {
+        if (toggle.innerHTML == "keyboard_arrow_down") {
+          window.top.minimize()
+        } else {
+          window.top.maximize()
+        }
+      }
       toggle.innerHTML = "keyboard_arrow_down"
       frame.onload = function() {this.contentDocument.documentElement.appendChild(toggle)}
 
