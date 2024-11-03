@@ -327,6 +327,9 @@ window.onbeforeunload = function() {
     return true;
   }
 }
+      frame.onload = function() {
+        window.toggle = this.contentWindow.toggle
+      }
     </script>
   </body>
 </html>
