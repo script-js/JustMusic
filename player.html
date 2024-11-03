@@ -141,6 +141,7 @@ var progInt;
     if (window.top.location.href == "https://justmusic.pages.dev/") {
       var toggle = document.createElement("div")
       toggle.classList = "material-symbols-outlined"
+      toggle.id = "toggle"
       toggle.onclick = function() {
         if (toggle.innerHTML == "keyboard_arrow_down") {
           window.top.minimize()
