@@ -144,8 +144,10 @@ var progInt;
       toggle.onclick = function() {
         if (toggle.innerHTML == "keyboard_arrow_down") {
           window.top.minimize()
+          toggle.innerHTML = "keyboard_arrow_up"
         } else {
           window.top.maximize()
+          toggle.innerHTML = "keyboard_arrow_down"
         }
       }
       toggle.innerHTML = "keyboard_arrow_down"
