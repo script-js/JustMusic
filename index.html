@@ -78,7 +78,7 @@
           frame.style.left = "0"
           frame.style.bottom = ""
           frame.style.right = ""
-          toggle.innerHTML = "keyboard_arrow_down"
+          frame.contentWindow.toggle.innerHTML = "keyboard_arrow_down"
         },500)
       }
 
@@ -90,6 +90,7 @@
         frame.style.right = "0"
         frame.width = "20%"
         frame.height = ""
+        frame.contentWindow.toggle.innerHTML = "keyboard_arrow_up"
       }
 
       function loadList(list,start) {
