@@ -84,7 +84,11 @@
       async function instantPlay() {
         var resp = await (await fetch("https://www.googleapis.com/youtube/v3/search?q=" + q.value + "&key=AIzaSyA-ZFrKnMfSPvRnNzk2g7rMNuAEGnCmn00&part=snippet&maxResults=50")).json();
         var video = resp.items.find((x) => x.snippet.channelTitle.includes(" - Topic"));
-        loadSong(video.id.videoId)
+        if (video) {
+          loadSong(video.id.videoId)
+        } else {
+          alert("No song found")
+        }
       }
 
       function minimize() {
